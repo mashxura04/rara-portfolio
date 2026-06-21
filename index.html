@@ -196,7 +196,8 @@
     .avatar-wrap { animation: heroH1 0.8s 0.18s cubic-bezier(.22,.68,0,1.1) both; display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .avatar {
       width: 200px; height: 200px; border-radius: 50%;
-      border: 3px solid var(--border-light);
+     border: 4px solid transparent;
+     box-shadow: 0 0 0 3px var(--accent), 0 0 0 6px rgba(124,110,242,0.2);
       overflow: hidden;
       display: flex; align-items: center; justify-content: center;
       background: linear-gradient(135deg, rgba(124,110,242,0.2), #1a1030);
