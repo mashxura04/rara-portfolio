@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -307,7 +308,7 @@
     .timeline-company { font-size: 0.83rem; color: var(--accent); margin-bottom: 10px; }
     .timeline-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
 
-         /* ── PROJECT STYLE CERTIFICATES (BIG IMAGE) ── */
+    /* ── PROJECT STYLE CERTIFICATES (BIG IMAGE) ── */
     .cert-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -396,13 +397,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 16px; /* Adds breathing room around the image */
     }
     .project-image-wrapper img {
-      width: 100%;
+      width: auto;       /* Let the width adjust automatically */
+      max-width: 75%;    /* Makes it smaller so it doesn't touch the edges */
       height: auto;
       object-fit: contain;
       display: block;
-      max-height: 350px;
+      max-height: 280px; /* Lowers the max height for a cleaner look */
+      border-radius: 4px; /* Slight rounding for polish */
     }
 
     @media (max-width: 680px) {
@@ -635,7 +639,7 @@
     </div>
   </section>
 
-         <!-- EXPERIENCE & CERTIFICATES -->
+  <!-- EXPERIENCE & CERTIFICATES -->
   <section id="experience">
     <div class="container">
       <p class="label reveal">What I've done</p>
@@ -777,6 +781,7 @@
       </div>
     </div>
   </section>
+  
   <!-- SKILLS -->
   <section id="skills">
     <div class="container">
@@ -959,10 +964,9 @@
     const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.1});
     document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
 
-      
-
     /* NAV SHADOW */
     window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>20);});
   </script>
 </body>
 </html>
+```
