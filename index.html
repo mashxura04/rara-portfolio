@@ -964,44 +964,7 @@
     const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.1});
     document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
 
-        /* CERTIFICATE GRID RENDER */
-      /* CERTIFICATE GRID RENDER */
-    function renderCertificates() {
-      const grid = document.getElementById('cert-grid');
-      if (!grid) return;
-      const data = JSON.parse(localStorage.getItem('portfolio_data'));
-      if (!data || !data.experience || data.experience.length === 0) {
-        grid.innerHTML = `<p style="color:var(--text-muted);text-align:center;padding:40px 0;">No certificates added yet. Use the admin panel to add them.</p>`;
-        return;
-      }
-      grid.innerHTML = data.experience.map((e, i) => `
-        <div class="cert-card ${e.current ? 'current' : ''} reveal${i > 0 ? ' reveal-delay-' + Math.min(i, 4) : ''}">
-          ${e.current ? `<div class="cert-badge">Current</div>` : ''}
-          <div class="cert-date">${e.date || 'Date'}</div>
-          <div class="cert-title">${e.role || 'Role Title'}</div>
-          <div class="cert-org">${e.company || 'Organization'}</div>
-          <div class="cert-desc">${e.desc || 'Description'}</div>
-          ${e.image ? `
-            <div class="cert-img-wrapper">
-              <img src="${e.image}" alt="${e.role}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-              <div class="cert-img-placeholder" style="display:none;">⚠️ Image not found</div>
-            </div>
-          ` : `
-            <div class="cert-img-wrapper">
-              <div class="cert-img-placeholder">No certificate image added yet</div>
-            </div>
-          `}
-        </div>
-      `).join('');
-    }
-    renderCertificates();
-    
-    // Re-render when storage changes (if admin updates)
-    window.addEventListener('storage', (e) => {
-      if (e.key === 'portfolio_data') {
-        renderCertificates();
-      }
-    });
+      
 
     /* NAV SHADOW */
     window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>20);});
