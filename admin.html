@@ -319,12 +319,12 @@
       <div id="skill-groups"></div>
     </div>
 
-    <!-- ── EXPERIENCE PANEL ── -->
+       <!-- ── EXPERIENCE PANEL ── -->
     <div class="panel" id="panel-experience">
-      <div class="panel-title">Experience & Education</div>
-      <p class="panel-sub">Your timeline — roles, clubs, courses, school.</p>
+      <div class="panel-title">Certificates & Experience</div>
+      <p class="panel-sub">Add up to 10 certificates. They'll display in a 2-column grid (5 left, 5 right).</p>
       <div class="card-list" id="exp-list"></div>
-      <button class="btn-add-card" id="add-exp" style="margin-top:12px">+ Add Entry</button>
+      <button class="btn-add-card" id="add-exp" style="margin-top:12px">+ Add Certificate</button>
     </div>
 
     <!-- ── CONTACT PANEL ── -->
@@ -523,7 +523,7 @@ function renderExp() {
     card.className = 'card';
     card.innerHTML = `
       <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-label">${e.role || 'Untitled Entry'} — ${e.company || ''}</span>
+        <span class="card-label">${e.role || 'Untitled Certificate'} — ${e.company || ''}</span>
         <span class="card-toggle">▾</span>
       </div>
       <div class="card-body">
@@ -538,15 +538,18 @@ function renderExp() {
             </select></div>
         </div>
         <div class="field-row">
-          <div class="field"><label>Role / Title</label>
-            <input type="text" value="${e.role}" placeholder="Role Title"
+          <div class="field"><label>Certificate / Role Title</label>
+            <input type="text" value="${e.role}" placeholder="Certificate title"
               oninput="expData[${i}].role=this.value; updateCardLabel(this,${i},'exp')" /></div>
-          <div class="field"><label>Company / Organization</label>
-            <input type="text" value="${e.company}" placeholder="Company"
+          <div class="field"><label>Organization / Issuer</label>
+            <input type="text" value="${e.company}" placeholder="Issuer name"
               oninput="expData[${i}].company=this.value; updateCardLabel(this,${i},'exp')" /></div>
         </div>
         <div class="field"><label>Description</label>
-          <textarea oninput="expData[${i}].desc=this.value">${e.desc}</textarea></div>
+          <textarea oninput="expData[${i}].desc=this.value" rows="2">${e.desc}</textarea></div>
+        <div class="field"><label>Certificate Image URL</label>
+          <input type="url" value="${e.image || ''}" placeholder="https://example.com/certificate.png"
+            oninput="expData[${i}].image=this.value" /></div>
         <div class="card-actions">
           <button class="btn-remove" onclick="removeExp(${i})">✕ Remove</button>
         </div>
@@ -554,9 +557,12 @@ function renderExp() {
     list.appendChild(card);
   });
 }
-function removeExp(i) { expData.splice(i, 1); renderExp(); }
 document.getElementById('add-exp').onclick = () => {
-  expData.push({ date: '', current: false, role: '', company: '', desc: '' });
+  if (expData.length >= 10) {
+    alert('Maximum 10 certificates allowed (5 left, 5 right).');
+    return;
+  }
+  expData.push({ date: '', current: false, role: '', company: '', desc: '', image: '' });
   renderExp();
   document.querySelectorAll('#exp-list .card').forEach((c,i) => { if(i===expData.length-1) { c.classList.add('open'); } });
 };
