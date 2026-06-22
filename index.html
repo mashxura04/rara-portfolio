@@ -307,6 +307,96 @@
     .timeline-company { font-size: 0.83rem; color: var(--accent); margin-bottom: 10px; }
     .timeline-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
 
+        /* ── CERTIFICATE GRID ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      transition: border-color 0.25s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cert-card:hover {
+      border-color: var(--accent-glow);
+      transform: translateY(-3px);
+    }
+    .cert-card.current {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(124,110,242,0.08);
+    }
+    .cert-badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 99px;
+      margin-bottom: 4px;
+      width: fit-content;
+      border: 1px solid rgba(124,110,242,0.2);
+    }
+    .cert-date {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+    .cert-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2px 0;
+    }
+    .cert-org {
+      font-size: 0.88rem;
+      color: var(--accent);
+    }
+    .cert-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 4px 0 8px;
+    }
+    .cert-img-wrapper {
+      margin-top: 8px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      max-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cert-img-wrapper img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      max-height: 200px;
+    }
+    .cert-img-placeholder {
+      width: 100%;
+      padding: 24px 16px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      background: var(--surface2);
+    }
+
+    @media (max-width: 680px) {
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ── CONTACT ── */
     .contact-body { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
     .contact-text { color: var(--text-muted); line-height: 1.8; }
@@ -522,44 +612,13 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
+    <!-- EXPERIENCE & CERTIFICATES -->
   <section id="experience">
     <div class="container">
       <p class="label reveal">What I've done</p>
-      <h2 class="reveal reveal-delay-1">Experience & Education</h2>
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <div class="timeline-date"><div class="date-tag">Current</div>Jan 2025 — Present</div>
-          <div>
-            <div class="timeline-role">Role Title</div>
-            <div class="timeline-company">Organization / Company Name</div>
-            <p class="timeline-desc">What you did, what you built or led, and why it mattered.</p>
-          </div>
-        </div>
-        <div class="timeline-item reveal reveal-delay-1">
-          <div class="timeline-date">Sep 2024 — Dec 2024</div>
-          <div>
-            <div class="timeline-role">Another Role or Project</div>
-            <div class="timeline-company">Organization / Program Name</div>
-            <p class="timeline-desc">Brief description of your responsibility and what you learned.</p>
-          </div>
-        </div>
-        <div class="timeline-item reveal reveal-delay-2">
-          <div class="timeline-date">2023 — Present</div>
-          <div>
-            <div class="timeline-role">Student</div>
-            <div class="timeline-company">School Number 63</div>
-            <p class="timeline-desc">Studying [subjects]. Notable achievements: [awards, honor roll, competitions won].</p>
-          </div>
-        </div>
-        <div class="timeline-item reveal reveal-delay-3">
-          <div class="timeline-date">2024</div>
-          <div>
-            <div class="timeline-role">Course or Certification</div>
-            <div class="timeline-company">Platform / Institution</div>
-            <p class="timeline-desc">What the course covered and what you built or achieved.</p>
-          </div>
-        </div>
+      <h2 class="reveal reveal-delay-1">Experience & Certificates</h2>
+      <div class="cert-grid" id="cert-grid">
+        <!-- Cards will be injected by JS -->
       </div>
     </div>
   </section>
@@ -745,6 +804,44 @@
     /* SCROLL REVEAL */
     const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.1});
     document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
+
+        /* CERTIFICATE GRID RENDER */
+    function renderCertificates() {
+      const grid = document.getElementById('cert-grid');
+      if (!grid) return;
+      const data = JSON.parse(localStorage.getItem('portfolio_data'));
+      if (!data || !data.experience || data.experience.length === 0) {
+        grid.innerHTML = `<p style="color:var(--text-muted);text-align:center;padding:40px 0;">No certificates added yet. Use the admin panel to add them.</p>`;
+        return;
+      }
+      grid.innerHTML = data.experience.map((e, i) => `
+        <div class="cert-card ${e.current ? 'current' : ''} reveal${i > 0 ? ' reveal-delay-' + Math.min(i, 4) : ''}">
+          ${e.current ? `<div class="cert-badge">Current</div>` : ''}
+          <div class="cert-date">${e.date || 'Date'}</div>
+          <div class="cert-title">${e.role || 'Role Title'}</div>
+          <div class="cert-org">${e.company || 'Organization'}</div>
+          <div class="cert-desc">${e.desc || 'Description'}</div>
+          ${e.image ? `
+            <div class="cert-img-wrapper">
+              <img src="${e.image}" alt="${e.role}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+              <div class="cert-img-placeholder" style="display:none;">⚠️ Image not found</div>
+            </div>
+          ` : `
+            <div class="cert-img-wrapper">
+              <div class="cert-img-placeholder">No certificate image added yet</div>
+            </div>
+          `}
+        </div>
+      `).join('');
+    }
+    renderCertificates();
+    
+    // Re-render when storage changes (if admin updates)
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'portfolio_data') {
+        renderCertificates();
+      }
+    });
 
     /* NAV SHADOW */
     window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>20);});
