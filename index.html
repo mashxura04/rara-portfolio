@@ -397,18 +397,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px; /* Adds breathing room around the image */
+      padding: 12px; /* Keeps a neat, thin border around the image */
     }
     .project-image-wrapper img {
-      width: auto;       /* Let the width adjust automatically */
-      max-width: 75%;    /* Makes it smaller so it doesn't touch the edges */
+      width: auto;       
+      max-width: 55%;    /* Shrinks it so it sits perfectly in the center */
       height: auto;
       object-fit: contain;
       display: block;
-      max-height: 280px; /* Lowers the max height for a cleaner look */
-      border-radius: 4px; /* Slight rounding for polish */
+      max-height: 200px; /* Keeps it small but perfectly readable */
+      border-radius: 4px; 
     }
-
     @media (max-width: 680px) {
       .cert-grid {
         grid-template-columns: 1fr;
