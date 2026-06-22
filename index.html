@@ -307,8 +307,7 @@
     .timeline-company { font-size: 0.83rem; color: var(--accent); margin-bottom: 10px; }
     .timeline-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
 
-      
-        /* ── PROJECT STYLE CERTIFICATES ── */
+         /* ── PROJECT STYLE CERTIFICATES (BIG IMAGE) ── */
     .cert-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -318,46 +317,32 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 16px 20px;
+      padding: 20px;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      flex-direction: column;
       transition: border-color 0.25s, transform 0.2s;
     }
     .project-card:hover {
       border-color: var(--accent-glow);
       transform: translateY(-3px);
     }
-    .project-left {
+    
+    .project-top {
       display: flex;
-      gap: 16px;
+      justify-content: space-between;
       align-items: flex-start;
-    }
-    .project-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: var(--radius);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      overflow: hidden;
-    }
-    .project-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      margin-bottom: 12px;
     }
     .project-info {
       display: flex;
       flex-direction: column;
       gap: 4px;
+      flex: 1;
+      padding-right: 12px;
     }
     .project-title {
       font-family: var(--font-display);
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--text);
     }
@@ -397,26 +382,43 @@
       color: var(--accent);
       border: 1px solid rgba(124,110,242,0.2);
       white-space: nowrap;
-      margin-left: 12px;
       flex-shrink: 0;
+      margin-left: 12px;
     }
+    
+    .project-image-wrapper {
+      margin-top: 12px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .project-image-wrapper img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      max-height: 350px;
+    }
+
     @media (max-width: 680px) {
       .cert-grid {
         grid-template-columns: 1fr;
       }
-      .project-left {
+      .project-top {
         flex-direction: column;
+        align-items: stretch;
       }
       .project-badge {
         margin-left: 0;
         margin-top: 4px;
-      }
-      .project-card {
-        flex-direction: column;
-        align-items: stretch;
+        width: fit-content;
       }
     }
-    
 
     /* ── CONTACT ── */
     .contact-body { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
@@ -633,7 +635,7 @@
     </div>
   </section>
 
-        <!-- EXPERIENCE & CERTIFICATES -->
+         <!-- EXPERIENCE & CERTIFICATES -->
   <section id="experience">
     <div class="container">
       <p class="label reveal">What I've done</p>
@@ -655,8 +657,7 @@
             <div class="project-badge">Certified</div>
           </div>
           <div class="project-image-wrapper">
-            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/bps.jpg" alt="Business Certificate" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-            <div class="cert-img-placeholder" style="display:none;">⚠️ Image not found</div>
+            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/bps.jpg" alt="Business Certificate" />
           </div>
         </div>
 
@@ -675,8 +676,7 @@
             <div class="project-badge">Diploma</div>
           </div>
           <div class="project-image-wrapper">
-            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/english.jpg" alt="English Certificate" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-            <div class="cert-img-placeholder" style="display:none;">⚠️ Image not found</div>
+            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/english.jpg" alt="English Certificate" />
           </div>
         </div>
 
@@ -695,8 +695,7 @@
             <div class="project-badge">Award</div>
           </div>
           <div class="project-image-wrapper">
-            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/pitch.jpg" alt="Pitch Certificate" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-            <div class="cert-img-placeholder" style="display:none;">⚠️ Image not found</div>
+            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/pitch.jpg" alt="Pitch Certificate" />
           </div>
         </div>
 
@@ -715,8 +714,7 @@
             <div class="project-badge">Certified</div>
           </div>
           <div class="project-image-wrapper">
-            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/project.png" alt="Project Management Certificate" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-            <div class="cert-img-placeholder" style="display:none;">⚠️ Image not found</div>
+            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/project.png" alt="Project Management Certificate" />
           </div>
         </div>
 
@@ -735,8 +733,7 @@
             <div class="project-badge">Award</div>
           </div>
           <div class="project-image-wrapper">
-            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sport.jpg" alt="Sports Certificate" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-            <div class="cert-img-placeholder" style="display:none;">⚠️ Image not found</div>
+            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sport.jpg" alt="Sports Certificate" />
           </div>
         </div>
 
@@ -754,8 +751,7 @@
             <div class="project-badge">Completed</div>
           </div>
           <div class="project-image-wrapper">
-            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sth.jpg" alt="Certificate" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-            <div class="cert-img-placeholder" style="display:none;">⚠️ Image not found</div>
+            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sth.jpg" alt="Certificate" />
           </div>
         </div>
 
@@ -774,8 +770,7 @@
             <div class="project-badge">Award</div>
           </div>
           <div class="project-image-wrapper">
-            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/technovationgirls.jpg" alt="Technovation Girls Certificate" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-            <div class="cert-img-placeholder" style="display:none;">⚠️ Image not found</div>
+            <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/technovationgirls.jpg" alt="Technovation Girls Certificate" />
           </div>
         </div>
 
