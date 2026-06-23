@@ -995,6 +995,36 @@
 
     /* NAV SHADOW */
     window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>20);});
+        /* SMOOTH SCROLL BACK TO THE CLICKED CERTIFICATE */
+    window.addEventListener('load', function() {
+      const certId = sessionStorage.getItem('return_to_cert');
+      if (certId) {
+        // Clear the storage so it only happens once
+        sessionStorage.removeItem('return_to_cert');
+        
+        // Build the exact ID we gave the link in index.html (certificate.html?id=X)
+        const targetLink = document.querySelector(`a[href="certificate.html?id=${certId}"]`);
+        
+        if (targetLink) {
+          // Scroll smoothly to the card
+          targetLink.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+          
+          // Add a subtle glow to the card to show the user where they landed
+          targetLink.style.transition = 'border-color 0.5s, box-shadow 0.5s';
+          targetLink.style.borderColor = 'var(--accent)';
+          targetLink.style.boxShadow = '0 0 30px rgba(124,110,242,0.3)';
+          
+          // Remove the glow after 2.5 seconds
+          setTimeout(() => {
+            targetLink.style.borderColor = '';
+            targetLink.style.boxShadow = '';
+          }, 2500);
+        }
+      }
+    });
   </script>
 </body>
 </html>
