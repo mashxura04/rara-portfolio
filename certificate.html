@@ -88,6 +88,7 @@
 </head>
 <body>
   <div class="container">
+   <!-- BACK BUTTON FIXED -->
    <a href="index.html" id="back-btn" style="color: var(--text-muted); text-decoration: none; font-size: 1.2rem; transition: color 0.2s; display: inline-block; margin-bottom: 30px;">← Back</a>
     
     <div id="cert-content">
@@ -96,7 +97,22 @@
   </div>
 
   <script>
-    // All your certificate data stored in one place
+    // --- 1. SAVE THE ID INSTANTLY ---
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id) {
+      sessionStorage.setItem('return_to_cert', id);
+    }
+
+    // --- 2. FORCE THE BACK BUTTON TO RE-SAVE THE ID ON CLICK ---
+    document.getElementById('back-btn').addEventListener('click', function(e) {
+      if (id) {
+        sessionStorage.setItem('return_to_cert', id);
+      }
+      // Let the link navigate naturally
+    });
+
+    // --- 3. LOAD THE CERTIFICATE DATA ---
     const certData = [
       {
         id: 1,
@@ -172,11 +188,8 @@
       }
     ];
 
-    // Load the data based on the URL id
-    const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get('id'));
-    const cert = certData.find(c => c.id === id);
-
+    const certId = parseInt(id);
+    const cert = certData.find(c => c.id === certId);
     const content = document.getElementById('cert-content');
 
     if (cert) {
@@ -187,4 +200,13 @@
           <div class="cert-title">${cert.title}</div>
           <div class="cert-sub">${cert.issuer}</div>
         </div>
-        <div class="cert-images">${imagesHtml
+        <div class="cert-images">${imagesHtml}</div>
+        <div class="cert-context">${cert.context}</div>
+      `;
+    } else {
+      // This else statement prevents the blank screen you saw!
+      content.innerHTML = `<p style="color:var(--text-muted);">Certificate not found (ID: ${id}). Please go back and try again.</p>`;
+    }
+  </script>
+</body>
+</html>
