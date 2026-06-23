@@ -187,26 +187,4 @@
           <div class="cert-title">${cert.title}</div>
           <div class="cert-sub">${cert.issuer}</div>
         </div>
-        <div class="cert-images">${imagesHtml}</div>
-        <div class="cert-context">${cert.context}</div>
-      `;
-    } else {
-      content.innerHTML = `<p style="color:var(--text-muted);">Certificate not found. Please go back and try again.</p>`;
-    }
-  </script>
-    <script>
-    // Save the ID to sessionStorage when this page loads
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    if (id) {
-      sessionStorage.setItem('return_to_cert', id);
-    }
-
-    // Make the Back button save the ID before leaving
-    document.getElementById('back-btn').addEventListener('click', function(e) {
-      // The link will naturally go to index.html, and the ID is already saved above.
-    });
-  </script>
-  
-</body>
-</html>
+        <div class="cert-images">${imagesHtml
