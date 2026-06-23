@@ -307,7 +307,7 @@
     .timeline-company { font-size: 0.83rem; color: var(--accent); margin-bottom: 10px; }
     .timeline-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
 
-    /* ── PROJECT STYLE CERTIFICATES (HORIZONTAL LAYOUT) ── */
+    /* ── PROJECT STYLE CERTIFICATES (OLD GREAT LOOK) ── */
     .cert-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -321,9 +321,10 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: center;
-      gap: 16px;
+      align-items: flex-start;
       transition: border-color 0.25s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
       cursor: pointer;
     }
     .project-card:hover {
@@ -337,6 +338,7 @@
       flex-direction: column;
       gap: 6px;
       flex: 1;
+      padding-right: 16px;
     }
     .project-title {
       font-family: var(--font-display);
@@ -378,6 +380,7 @@
       align-items: flex-end;
       gap: 8px;
       flex-shrink: 0;
+      text-align: right;
     }
     .project-badge {
       display: inline-block;
@@ -654,168 +657,152 @@
       <div class="cert-grid">
         
         <!-- CERT 1: bps.jpg -->
-        <a href="certificate.html?id=1" class="project-card reveal" style="text-decoration:none; color:inherit;">
-          <div class="project-top-row">
-            <div class="project-info">
-              <div class="project-title">Business & Professional Skills</div>
-              <div class="project-desc">Completed a comprehensive program on business communication, professional etiquette, and leadership fundamentals.</div>
-              <div class="project-tags">
-                <span class="tag">Leadership</span>
-                <span class="tag">Communication</span>
-              </div>
-              <div class="project-status">Dec 2024</div>
+        <a href="certificate.html?id=1" class="project-card reveal">
+          <div class="project-info">
+            <div class="project-title">Business & Professional Skills</div>
+            <div class="project-desc">Completed a comprehensive program on business communication, professional etiquette, and leadership fundamentals.</div>
+            <div class="project-tags">
+              <span class="tag">Leadership</span>
+              <span class="tag">Communication</span>
             </div>
-            <div class="project-right">
-              <div class="project-badge">Certified</div>
-              <div class="project-image-wrapper">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/bps.jpg" alt="Business Certificate" />
-              </div>
+            <div class="project-status">Dec 2024</div>
+          </div>
+          <div class="project-right">
+            <div class="project-badge">Certified</div>
+            <div class="project-image-wrapper">
+              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/bps.jpg" alt="Business Certificate" />
             </div>
           </div>
         </a>
 
         <!-- CERT 2: technovationgirls.jpg -->
-        <a href="certificate.html?id=2" class="project-card reveal reveal-delay-1" style="text-decoration:none; color:inherit;">
-          <div class="project-top-row">
-            <div class="project-info">
-              <div class="project-title">Technovation Girls Program</div>
-              <div class="project-desc">Participated in the global Technovation Girls program, building a tech-based solution to a real-world problem as part of a team.</div>
-              <div class="project-tags">
-                <span class="tag">Global</span>
-                <span class="tag">Tech for Good</span>
-              </div>
-              <div class="project-status">Jun 2024</div>
+        <a href="certificate.html?id=2" class="project-card reveal reveal-delay-1">
+          <div class="project-info">
+            <div class="project-title">Technovation Girls Program</div>
+            <div class="project-desc">Participated in the global Technovation Girls program, building a tech-based solution to a real-world problem as part of a team.</div>
+            <div class="project-tags">
+              <span class="tag">Global</span>
+              <span class="tag">Tech for Good</span>
             </div>
-            <div class="project-right">
-              <div class="project-badge">Award</div>
-              <div class="project-image-wrapper">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/technovationgirls.jpg" alt="Technovation Girls Certificate" />
-              </div>
+            <div class="project-status">Jun 2024</div>
+          </div>
+          <div class="project-right">
+            <div class="project-badge">Award</div>
+            <div class="project-image-wrapper">
+              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/technovationgirls.jpg" alt="Technovation Girls Certificate" />
             </div>
           </div>
         </a>
 
         <!-- CERT 3: pitch.jpg -->
-        <a href="certificate.html?id=3" class="project-card reveal reveal-delay-2" style="text-decoration:none; color:inherit;">
-          <div class="project-top-row">
-            <div class="project-info">
-              <div class="project-title">Pitch & Presentation Skills</div>
-              <div class="project-desc">Learned how to craft compelling startup pitches, present to investors, and communicate ideas effectively.</div>
-              <div class="project-tags">
-                <span class="tag">Public Speaking</span>
-                <span class="tag">Storytelling</span>
-              </div>
-              <div class="project-status">Oct 2024</div>
+        <a href="certificate.html?id=3" class="project-card reveal reveal-delay-2">
+          <div class="project-info">
+            <div class="project-title">Pitch & Presentation Skills</div>
+            <div class="project-desc">Learned how to craft compelling startup pitches, present to investors, and communicate ideas effectively.</div>
+            <div class="project-tags">
+              <span class="tag">Public Speaking</span>
+              <span class="tag">Storytelling</span>
             </div>
-            <div class="project-right">
-              <div class="project-badge">Award</div>
-              <div class="project-image-wrapper">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/pitch.jpg" alt="Pitch Certificate" />
-              </div>
+            <div class="project-status">Oct 2024</div>
+          </div>
+          <div class="project-right">
+            <div class="project-badge">Award</div>
+            <div class="project-image-wrapper">
+              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/pitch.jpg" alt="Pitch Certificate" />
             </div>
           </div>
         </a>
 
         <!-- CERT 4: project.png -->
-        <a href="certificate.html?id=4" class="project-card reveal reveal-delay-3" style="text-decoration:none; color:inherit;">
-          <div class="project-top-row">
-            <div class="project-info">
-              <div class="project-title">Project Management Fundamentals</div>
-              <div class="project-desc">Covered project planning, agile methodologies, team collaboration, and delivering results on time.</div>
-              <div class="project-tags">
-                <span class="tag">Agile</span>
-                <span class="tag">Scrum</span>
-              </div>
-              <div class="project-status">Sep 2024</div>
+        <a href="certificate.html?id=4" class="project-card reveal reveal-delay-3">
+          <div class="project-info">
+            <div class="project-title">Project Management Fundamentals</div>
+            <div class="project-desc">Covered project planning, agile methodologies, team collaboration, and delivering results on time.</div>
+            <div class="project-tags">
+              <span class="tag">Agile</span>
+              <span class="tag">Scrum</span>
             </div>
-            <div class="project-right">
-              <div class="project-badge">Certified</div>
-              <div class="project-image-wrapper">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/project.png" alt="Project Management Certificate" />
-              </div>
+            <div class="project-status">Sep 2024</div>
+          </div>
+          <div class="project-right">
+            <div class="project-badge">Certified</div>
+            <div class="project-image-wrapper">
+              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/project.png" alt="Project Management Certificate" />
             </div>
           </div>
         </a>
 
         <!-- CERT 5: sport.jpg -->
-        <a href="certificate.html?id=5" class="project-card reveal reveal-delay-4" style="text-decoration:none; color:inherit;">
-          <div class="project-top-row">
-            <div class="project-info">
-              <div class="project-title">Sports Leadership & Teamwork</div>
-              <div class="project-desc">Recognized for leadership, teamwork, and sportsmanship in competitive school/regional events.</div>
-              <div class="project-tags">
-                <span class="tag">Leadership</span>
-                <span class="tag">Teamwork</span>
-              </div>
-              <div class="project-status">Aug 2024</div>
+        <a href="certificate.html?id=5" class="project-card reveal reveal-delay-4">
+          <div class="project-info">
+            <div class="project-title">Sports Leadership & Teamwork</div>
+            <div class="project-desc">Recognized for leadership, teamwork, and sportsmanship in competitive school/regional events.</div>
+            <div class="project-tags">
+              <span class="tag">Leadership</span>
+              <span class="tag">Teamwork</span>
             </div>
-            <div class="project-right">
-              <div class="project-badge">Award</div>
-              <div class="project-image-wrapper">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sport.jpg" alt="Sports Certificate" />
-              </div>
+            <div class="project-status">Aug 2024</div>
+          </div>
+          <div class="project-right">
+            <div class="project-badge">Award</div>
+            <div class="project-image-wrapper">
+              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sport.jpg" alt="Sports Certificate" />
             </div>
           </div>
         </a>
 
         <!-- CERT 6: sth.jpg -->
-        <a href="certificate.html?id=6" class="project-card reveal" style="text-decoration:none; color:inherit;">
-          <div class="project-top-row">
-            <div class="project-info">
-              <div class="project-title">Edit Title (sth.jpg)</div>
-              <div class="project-desc">Edit this description for your "sth" certificate.</div>
-              <div class="project-tags">
-                <span class="tag">Edit Tag</span>
-              </div>
-              <div class="project-status">Jul 2024</div>
+        <a href="certificate.html?id=6" class="project-card reveal">
+          <div class="project-info">
+            <div class="project-title">Edit Title (sth.jpg)</div>
+            <div class="project-desc">Edit this description for your "sth" certificate.</div>
+            <div class="project-tags">
+              <span class="tag">Edit Tag</span>
             </div>
-            <div class="project-right">
-              <div class="project-badge">Completed</div>
-              <div class="project-image-wrapper">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sth.jpg" alt="Certificate" />
-              </div>
+            <div class="project-status">Jul 2024</div>
+          </div>
+          <div class="project-right">
+            <div class="project-badge">Completed</div>
+            <div class="project-image-wrapper">
+              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sth.jpg" alt="Certificate" />
             </div>
           </div>
         </a>
 
         <!-- CERT 7: english.jpg -->
-        <a href="certificate.html?id=7" class="project-card reveal reveal-delay-1" style="text-decoration:none; color:inherit;">
-          <div class="project-top-row">
-            <div class="project-info">
-              <div class="project-title">English Language Proficiency</div>
-              <div class="project-desc">Certified in English language skills, including reading, writing, speaking, and listening at an advanced level.</div>
-              <div class="project-tags">
-                <span class="tag">Advanced</span>
-                <span class="tag">IELTS</span>
-              </div>
-              <div class="project-status">Nov 2024</div>
+        <a href="certificate.html?id=7" class="project-card reveal reveal-delay-1">
+          <div class="project-info">
+            <div class="project-title">English Language Proficiency</div>
+            <div class="project-desc">Certified in English language skills, including reading, writing, speaking, and listening at an advanced level.</div>
+            <div class="project-tags">
+              <span class="tag">Advanced</span>
+              <span class="tag">IELTS</span>
             </div>
-            <div class="project-right">
-              <div class="project-badge">Diploma</div>
-              <div class="project-image-wrapper">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/english.jpg" alt="English Certificate" />
-              </div>
+            <div class="project-status">Nov 2024</div>
+          </div>
+          <div class="project-right">
+            <div class="project-badge">Diploma</div>
+            <div class="project-image-wrapper">
+              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/english.jpg" alt="English Certificate" />
             </div>
           </div>
         </a>
 
         <!-- CERT 8: founders.jpg -->
-        <a href="certificate.html?id=8" class="project-card reveal reveal-delay-1" style="text-decoration:none; color:inherit;">
-          <div class="project-top-row">
-            <div class="project-info">
-              <div class="project-title">Founders Program</div>
-              <div class="project-desc">Completed the Founders program, gaining hands-on experience in startup building, pitching, and entrepreneurial leadership.</div>
-              <div class="project-tags">
-                <span class="tag">Entrepreneurship</span>
-                <span class="tag">Startup</span>
-              </div>
-              <div class="project-status">Jan 2025</div>
+        <a href="certificate.html?id=8" class="project-card reveal reveal-delay-1">
+          <div class="project-info">
+            <div class="project-title">Founders Program</div>
+            <div class="project-desc">Completed the Founders program, gaining hands-on experience in startup building, pitching, and entrepreneurial leadership.</div>
+            <div class="project-tags">
+              <span class="tag">Entrepreneurship</span>
+              <span class="tag">Startup</span>
             </div>
-            <div class="project-right">
-              <div class="project-badge">Certificate</div>
-              <div class="project-image-wrapper">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/founders.jpg" alt="Founders Program Certificate" />
-              </div>
+            <div class="project-status">Jan 2025</div>
+          </div>
+          <div class="project-right">
+            <div class="project-badge">Certificate</div>
+            <div class="project-image-wrapper">
+              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/founders.jpg" alt="Founders Program Certificate" />
             </div>
           </div>
         </a>
