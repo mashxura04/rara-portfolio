@@ -561,6 +561,107 @@
     .contact-link-arrow { color: var(--text-dim); font-size: 0.85rem; transition: color 0.18s; }
     .contact-link:hover .contact-link-arrow { color: var(--accent); }
 
+    
+        /* ── CONTACT FORM (NEW) ── */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .btn-send {
+      margin-top: 8px;
+      padding: 14px 24px;
+      border: none;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .btn-send:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+    }
+    .btn-send:active {
+      transform: scale(0.98);
+    }
+    .btn-send:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    #btn-icon {
+      font-size: 1.1rem;
+      transition: transform 0.2s;
+    }
+    .btn-send:hover #btn-icon {
+      transform: translate(2px, -2px);
+    }
+    
+    /* Loading Spinner */
+    #btn-spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top: 2px solid #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    @media (max-width: 680px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ── FOOTER ── */
     footer { border-top: 1px solid var(--border); padding: 28px 0; }
     .footer-inner {
@@ -1023,39 +1124,57 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
       <p class="label reveal">Say hello</p>
       <h2 class="reveal reveal-delay-1">Let's connect</h2>
       <div class="contact-body">
+        
+        <!-- Left side: Text -->
         <div class="contact-text reveal-left">
           <p>Whether you're reviewing my application, looking to collaborate, or just want to talk about <strong>entrepreneurship</strong> — I'd be happy to hear from you!</p>
           <br>
           <p>I'm currently <strong>open to internships, programs, and research opportunities</strong> in software engineering. Don't hesitate to reach out.</p>
         </div>
-        <div class="contact-links reveal-right">
-          <a href="mailto:mashxurak64@gmail.com" class="contact-link">
-            <span class="contact-link-label">mashxurak64@gmail.com</span>
-            <span class="contact-link-arrow">↗</span>
-          </a>
-          <a href="https://www.linkedin.com/in/mashhura-kenjayeva1/" target="_blank" class="contact-link">
-            <span class="contact-link-label">LinkedIn</span>
-            <span class="contact-link-arrow">↗</span>
-          </a>
-          <a href="https://github.com/mashxura04" target="_blank" class="contact-link">
-            <span class="contact-link-label">GitHub</span>
-            <span class="contact-link-arrow">↗</span>
-          </a>
-          <a href="https://t.me/YOUR_TELEGRAM" target="_blank" class="contact-link">
-            <span class="contact-link-label">Telegram</span>
-            <span class="contact-link-arrow">↗</span>
-          </a>
+
+        <!-- Right side: Form -->
+        <div class="reveal-right" style="width:100%;">
+          <form id="contact-form" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">NAME</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">EMAIL</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">SUBJECT</label>
+              <input type="text" id="subject" name="subject" placeholder="Project inquiry" />
+            </div>
+
+            <div class="form-group">
+              <label for="message">MESSAGE</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn-send">
+              <span id="btn-text">Send Message</span>
+              <span id="btn-icon">↗</span>
+              <div id="btn-spinner" style="display:none;"></div>
+            </button>
+          </form>
+          <div id="form-status" style="margin-top:16px; text-align:center; font-weight:500; display:none;"></div>
         </div>
+
       </div>
     </div>
   </section>
-
   <footer>
     <div class="footer-inner">
       <span class="footer-name">© 2025 Mashhura Kenjayeva</span>
@@ -1200,6 +1319,65 @@
         }
       }
     });
+    /* ── CONTACT FORM SUBMISSION ── */
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnIcon = document.getElementById('btn-icon');
+    const btnSpinner = document.getElementById('btn-spinner');
+    const formStatus = document.getElementById('form-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // 1. Disable button and show spinner
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending...';
+      btnIcon.style.display = 'none';
+      btnSpinner.style.display = 'block';
+      formStatus.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      try {
+        // 2. Send data to Formspree
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          // 3. Success!
+          btnText.textContent = '✓ Message Sent!';
+          btnSpinner.style.display = 'none';
+          btnIcon.style.display = 'none';
+          form.reset();
+          
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            btnText.textContent = 'Send Message';
+            btnIcon.style.display = 'inline';
+            formStatus.style.display = 'none';
+          }, 3000);
+
+        } else {
+          // 4. Error handling
+          throw new Error('Something went wrong.');
+        }
+      } catch (error) {
+        btnText.textContent = '✕ Failed. Try again.';
+        btnSpinner.style.display = 'none';
+        submitBtn.disabled = false;
+        btnIcon.style.display = 'inline';
+        
+        setTimeout(() => {
+          btnText.textContent = 'Send Message';
+        }, 3000);
+      }
+    });
+
+    
   </script>
 </body>
 </html>
