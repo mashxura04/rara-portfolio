@@ -993,17 +993,18 @@
     const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.1});
     document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
 
-    /* NAV SHADOW */
+       /* NAV SHADOW */
     window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>20);});
-        /* SMOOTH SCROLL BACK TO THE CLICKED CERTIFICATE */
+
+    /* SMOOTH SCROLL BACK TO THE CLICKED CERTIFICATE */
     window.addEventListener('load', function() {
       const certId = sessionStorage.getItem('return_to_cert');
       if (certId) {
         // Clear the storage so it only happens once
         sessionStorage.removeItem('return_to_cert');
         
-        // Build the exact ID we gave the link in index.html (certificate.html?id=X)
-        const targetLink = document.querySelector(`a[href="certificate.html?id=${certId}"]`);
+        // Build the exact link we gave the card (including the relative path)
+        const targetLink = document.querySelector(`a[href^="certificate.html?id=${certId}"]`);
         
         if (targetLink) {
           // Scroll smoothly to the card
