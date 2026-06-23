@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificate Details</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #060608;
+      --surface: #0f0f12;
+      --border: #1c1c22;
+      --text: #f0f0f0;
+      --text-muted: #888;
+      --accent: #7c6ef2;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --radius: 12px;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: var(--text); }
+    
+    .cert-header {
+      margin-bottom: 30px;
+    }
+    .cert-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .cert-sub {
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+    
+    .cert-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .cert-images img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      object-fit: contain;
+      background: var(--surface);
+    }
+    
+    .cert-context {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    .cert-context strong { color: var(--text); }
+    
+    @media (max-width: 600px) {
+      .cert-title { font-size: 1.6rem; }
+      .cert-images { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-btn">← Back to Portfolio</a>
+    
+    <div id="cert-content">
+      <!-- Content will be loaded by JavaScript -->
+    </div>
+  </div>
+
+  <script>
+    // All your certificate data stored in one place
+    const certData = [
+      {
+        id: 1,
+        title: "Business & Professional Skills",
+        issuer: "Organization Name",
+        images: [
+          "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/bps.jpg"
+        ],
+        context: "<strong>About this certificate:</strong> This program was a deep dive into corporate communication. We learned how to present in front of executives and handle high-pressure negotiations."
+      },
+      {
+        id: 2,
+        title: "Technovation Girls Program",
+        issuer: "Technovation",
+        images: [
+          "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/technovationgirls.jpg"
+        ],
+        context: "<strong>About this certificate:</strong> Our team built a mobile app aimed at reducing food waste in local communities. We pitched it to a panel of judges and won the regional award."
+      },
+      {
+        id: 3,
+        title: "Pitch & Presentation Skills",
+        issuer: "Organization Name",
+        images: [
+          "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/pitch.jpg"
+        ],
+        context: "<strong>About this certificate:</strong> The final project required pitching a startup idea to a panel of mock investors. My pitch on an EdTech solution placed in the top 3."
+      },
+      {
+        id: 4,
+        title: "Project Management Fundamentals",
+        issuer: "Organization Name",
+        images: [
+          "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/project.png"
+        ],
+        context: "<strong>About this certificate:</strong> Learned the fundamentals of leading teams, using tools like Jira and Trello, and managing project lifecycles from initiation to closure."
+      },
+      {
+        id: 5,
+        title: "Sports Leadership & Teamwork",
+        issuer: "Organization / Club Name",
+        images: [
+          "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sport.jpg"
+        ],
+        context: "<strong>About this certificate:</strong> Led the school volleyball team as captain. Organized practice sessions, motivated teammates, and maintained high academic standing while competing."
+      },
+      {
+        id: 6,
+        title: "Edit Title (sth.jpg)",
+        issuer: "Edit Organization",
+        images: [
+          "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sth.jpg"
+        ],
+        context: "<strong>About this certificate:</strong> Write a brief story about why this certificate was meaningful to you."
+      },
+      {
+        id: 7,
+        title: "English Language Proficiency",
+        issuer: "Test Organization",
+        images: [
+          "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/english.jpg"
+        ],
+        context: "<strong>About this certificate:</strong> Prepared extensively through Cambridge materials and mock tests. This certification has opened doors to international programs and global opportunities."
+      },
+      {
+        id: 8,
+        title: "Founders Program",
+        issuer: "Startup Garage",
+        images: [
+          "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/founders.jpg"
+        ],
+        context: "<strong>About this certificate:</strong> Designed a business model canvas for a tech solution that simplifies local logistics. Learned directly from experienced founders and venture capitalists."
+      }
+    ];
+
+    // Load the data based on the URL id
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    const cert = certData.find(c => c.id === id);
+
+    const content = document.getElementById('cert-content');
+
+    if (cert) {
+      let imagesHtml = cert.images.map(img => `<img src="${img}" alt="${cert.title}" />`).join('');
+      
+      content.innerHTML = `
+        <div class="cert-header">
+          <div class="cert-title">${cert.title}</div>
+          <div class="cert-sub">${cert.issuer}</div>
+        </div>
+        <div class="cert-images">${imagesHtml}</div>
+        <div class="cert-context">${cert.context}</div>
+      `;
+    } else {
+      content.innerHTML = `<p style="color:var(--text-muted);">Certificate not found. Please go back and try again.</p>`;
+    }
+  </script>
+</body>
+</html>
