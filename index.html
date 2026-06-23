@@ -278,18 +278,118 @@
     .about-row-key { font-size: 0.78rem; color: var(--text-dim); }
     .about-row-val { font-size: 0.83rem; color: var(--text); font-weight: 500; text-align: right; }
 
-    /* ── SKILLS ── */
-    .skills-categories { display: flex; flex-direction: column; gap: 28px; }
-    .skill-group-title { font-size: 0.75rem; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
-    .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-    .pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 14px; background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); font-size: 0.83rem; color: var(--text-muted);
-      transition: border-color 0.2s, color 0.2s, transform 0.2s, background 0.2s; cursor: default;
+       /* ── SKILLS (BIG CARDS) ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
     }
-    .pill:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); background: var(--accent-soft); }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    
+    /* Card colors */
+    .card-yellow {
+      border-color: rgba(234, 179, 8, 0.3);
+      background: rgba(234, 179, 8, 0.05);
+    }
+    .card-yellow:hover {
+      border-color: rgba(234, 179, 8, 0.7);
+      box-shadow: 0 8px 32px rgba(234, 179, 8, 0.1);
+    }
+    .card-purple {
+      border-color: rgba(124, 110, 242, 0.3);
+      background: rgba(124, 110, 242, 0.05);
+    }
+    .card-purple:hover {
+      border-color: rgba(124, 110, 242, 0.7);
+      box-shadow: 0 8px 32px rgba(124, 110, 242, 0.1);
+    }
+    .card-blue {
+      border-color: rgba(59, 130, 246, 0.3);
+      background: rgba(59, 130, 246, 0.05);
+    }
+    .card-blue:hover {
+      border-color: rgba(59, 130, 246, 0.7);
+      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+    }
+    .card-green {
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.05);
+    }
+    .card-green:hover {
+      border-color: rgba(16, 185, 129, 0.7);
+      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.1);
+    }
+    
+    .skill-icon {
+      font-size: 2.2rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .skill-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .skill-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .skill-level {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+    .card-yellow .skill-level { color: rgba(234, 179, 8, 0.7); }
+    .card-purple .skill-level { color: rgba(124, 110, 242, 0.7); }
+    .card-blue .skill-level { color: rgba(59, 130, 246, 0.7); }
+    .card-green .skill-level { color: rgba(16, 185, 129, 0.7); }
+    
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .skill-tags span {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 99px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-card:hover .skill-tags span {
+      border-color: var(--border-light);
+      color: var(--text);
+    }
 
+    @media (max-width: 680px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
     /* ── TIMELINE ── */
     .timeline { display: flex; flex-direction: column; }
     .timeline-item {
@@ -811,40 +911,69 @@
     </div>
   </section>
   
-  <!-- SKILLS -->
+   <!-- SKILLS -->
   <section id="skills">
     <div class="container">
       <p class="label reveal">What I know</p>
-      <h2 class="reveal reveal-delay-1">Skills</h2>
-      <div class="skills-categories">
-        <div class="reveal reveal-delay-1">
-          <p class="skill-group-title">Technical</p>
-          <div class="skill-pills">
-            <span class="pill">Python</span>
-            <span class="pill">HTML / CSS</span>
-            <span class="pill">JavaScript</span>
-            <span class="pill">Math / Stats</span>
-            <span class="pill">Data Analysis</span>
+      <h2 class="reveal reveal-delay-1">My Skills</h2>
+      <div class="skills-grid">
+        
+        <!-- CARD 1: Innovation & Problem Solving -->
+        <div class="skill-card reveal reveal-delay-1 card-yellow">
+          <div class="skill-icon">💡</div>
+          <div class="skill-content">
+            <div class="skill-title">Innovation & Problem Solving</div>
+            <div class="skill-level">Proficient</div>
+            <div class="skill-tags">
+              <span>Hackathons</span>
+              <span>Startup Thinking</span>
+              <span>Research</span>
+            </div>
           </div>
         </div>
-        <div class="reveal reveal-delay-2">
-          <p class="skill-group-title">Creative</p>
-          <div class="skill-pills">
-            <span class="pill">Figma</span>
-            <span class="pill">Writing</span>
-            <span class="pill">Photography</span>
-            <span class="pill">Video Editing</span>
+
+        <!-- CARD 2: MVP Development -->
+        <div class="skill-card reveal reveal-delay-2 card-purple">
+          <div class="skill-icon">🚀</div>
+          <div class="skill-content">
+            <div class="skill-title">MVP Development</div>
+            <div class="skill-level">Proficient</div>
+            <div class="skill-tags">
+              <span>HTML / CSS</span>
+              <span>JavaScript</span>
+              <span>Project Management</span>
+            </div>
           </div>
         </div>
-        <div class="reveal reveal-delay-3">
-          <p class="skill-group-title">Soft Skills</p>
-          <div class="skill-pills">
-            <span class="pill">Leadership</span>
-            <span class="pill">Public Speaking</span>
-            <span class="pill">Project Management</span>
-            <span class="pill">Research</span>
+
+        <!-- CARD 3: Communication & Networking -->
+        <div class="skill-card reveal reveal-delay-3 card-blue">
+          <div class="skill-icon">👥</div>
+          <div class="skill-content">
+            <div class="skill-title">Communication & Networking</div>
+            <div class="skill-level">Proficient</div>
+            <div class="skill-tags">
+              <span>Public Speaking</span>
+              <span>Leadership</span>
+              <span>Writing</span>
+            </div>
           </div>
         </div>
+
+        <!-- CARD 4: Python (Learning) -->
+        <div class="skill-card reveal reveal-delay-4 card-green">
+          <div class="skill-icon">🐍</div>
+          <div class="skill-content">
+            <div class="skill-title">Python</div>
+            <div class="skill-level">Learning</div>
+            <div class="skill-tags">
+              <span>AI / Data</span>
+              <span>Automation</span>
+              <span>Problem Solving</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
