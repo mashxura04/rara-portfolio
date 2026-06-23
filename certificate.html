@@ -88,7 +88,7 @@
 </head>
 <body>
   <div class="container">
-   <a href="index.html#experience" class="back-btn">← Back</a>
+   <a href="index.html" id="back-btn" style="color: var(--text-muted); text-decoration: none; font-size: 1.2rem; transition: color 0.2s; display: inline-block; margin-bottom: 30px;">← Back</a>
     
     <div id="cert-content">
       <!-- Content will be loaded by JavaScript -->
@@ -194,5 +194,19 @@
       content.innerHTML = `<p style="color:var(--text-muted);">Certificate not found. Please go back and try again.</p>`;
     }
   </script>
+    <script>
+    // Save the ID to sessionStorage when this page loads
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id) {
+      sessionStorage.setItem('return_to_cert', id);
+    }
+
+    // Make the Back button save the ID before leaving
+    document.getElementById('back-btn').addEventListener('click', function(e) {
+      // The link will naturally go to index.html, and the ID is already saved above.
+    });
+  </script>
+  
 </body>
 </html>
