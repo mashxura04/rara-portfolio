@@ -657,7 +657,7 @@
       <div class="cert-grid">
         
         <!-- CERT 1: bps.jpg -->
-        <a href="certificate.html?id=1" class="project-card reveal">
+        <a href="certificate.html?id=1" class="project-card reveal" id="cert-card-1">
           <div class="project-info">
             <div class="project-title">Business & Professional Skills</div>
             <div class="project-desc">Completed a comprehensive program on business communication, professional etiquette, and leadership fundamentals.</div>
@@ -676,7 +676,7 @@
         </a>
 
         <!-- CERT 2: technovationgirls.jpg -->
-        <a href="certificate.html?id=2" class="project-card reveal reveal-delay-1">
+        <a href="certificate.html?id=2" class="project-card reveal reveal-delay-1" id="cert-card-2">
           <div class="project-info">
             <div class="project-title">Technovation Girls Program</div>
             <div class="project-desc">Participated in the global Technovation Girls program, building a tech-based solution to a real-world problem as part of a team.</div>
@@ -695,7 +695,7 @@
         </a>
 
         <!-- CERT 3: pitch.jpg -->
-        <a href="certificate.html?id=3" class="project-card reveal reveal-delay-2">
+        <a href="certificate.html?id=3" class="project-card reveal reveal-delay-2" id="cert-card-3">
           <div class="project-info">
             <div class="project-title">Pitch & Presentation Skills</div>
             <div class="project-desc">Learned how to craft compelling startup pitches, present to investors, and communicate ideas effectively.</div>
@@ -714,7 +714,7 @@
         </a>
 
         <!-- CERT 4: project.png -->
-        <a href="certificate.html?id=4" class="project-card reveal reveal-delay-3">
+        <a href="certificate.html?id=4" class="project-card reveal reveal-delay-3" id="cert-card-4">
           <div class="project-info">
             <div class="project-title">Project Management Fundamentals</div>
             <div class="project-desc">Covered project planning, agile methodologies, team collaboration, and delivering results on time.</div>
@@ -733,7 +733,7 @@
         </a>
 
         <!-- CERT 5: sport.jpg -->
-        <a href="certificate.html?id=5" class="project-card reveal reveal-delay-4">
+        <a href="certificate.html?id=5" class="project-card reveal reveal-delay-4" id="cert-card-5">
           <div class="project-info">
             <div class="project-title">Sports Leadership & Teamwork</div>
             <div class="project-desc">Recognized for leadership, teamwork, and sportsmanship in competitive school/regional events.</div>
@@ -752,7 +752,7 @@
         </a>
 
         <!-- CERT 6: sth.jpg -->
-        <a href="certificate.html?id=6" class="project-card reveal">
+        <a href="certificate.html?id=6" class="project-card reveal" id="cert-card-6">
           <div class="project-info">
             <div class="project-title">Edit Title (sth.jpg)</div>
             <div class="project-desc">Edit this description for your "sth" certificate.</div>
@@ -770,7 +770,7 @@
         </a>
 
         <!-- CERT 7: english.jpg -->
-        <a href="certificate.html?id=7" class="project-card reveal reveal-delay-1">
+        <a href="certificate.html?id=7" class="project-card reveal reveal-delay-1" id="cert-card-7">
           <div class="project-info">
             <div class="project-title">English Language Proficiency</div>
             <div class="project-desc">Certified in English language skills, including reading, writing, speaking, and listening at an advanced level.</div>
@@ -789,7 +789,7 @@
         </a>
 
         <!-- CERT 8: founders.jpg -->
-        <a href="certificate.html?id=8" class="project-card reveal reveal-delay-1">
+        <a href="certificate.html?id=8" class="project-card reveal reveal-delay-1" id="cert-card-8">
           <div class="project-info">
             <div class="project-title">Founders Program</div>
             <div class="project-desc">Completed the Founders program, gaining hands-on experience in startup building, pitching, and entrepreneurial leadership.</div>
@@ -993,7 +993,7 @@
     const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.1});
     document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
 
-       /* NAV SHADOW */
+    /* NAV SHADOW */
     window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>20);});
 
     /* SMOOTH SCROLL BACK TO THE CLICKED CERTIFICATE */
@@ -1003,25 +1003,25 @@
         // Clear the storage so it only happens once
         sessionStorage.removeItem('return_to_cert');
         
-        // Build the exact link we gave the card (including the relative path)
-        const targetLink = document.querySelector(`a[href^="certificate.html?id=${certId}"]`);
+        // Use the ID we added to the HTML tags
+        const targetCard = document.getElementById('cert-card-' + certId);
         
-        if (targetLink) {
+        if (targetCard) {
           // Scroll smoothly to the card
-          targetLink.scrollIntoView({ 
+          targetCard.scrollIntoView({ 
             behavior: 'smooth', 
             block: 'center' 
           });
           
           // Add a subtle glow to the card to show the user where they landed
-          targetLink.style.transition = 'border-color 0.5s, box-shadow 0.5s';
-          targetLink.style.borderColor = 'var(--accent)';
-          targetLink.style.boxShadow = '0 0 30px rgba(124,110,242,0.3)';
+          targetCard.style.transition = 'border-color 0.5s, box-shadow 0.5s';
+          targetCard.style.borderColor = 'var(--accent)';
+          targetCard.style.boxShadow = '0 0 30px rgba(124,110,242,0.3)';
           
           // Remove the glow after 2.5 seconds
           setTimeout(() => {
-            targetLink.style.borderColor = '';
-            targetLink.style.boxShadow = '';
+            targetCard.style.borderColor = '';
+            targetCard.style.boxShadow = '';
           }, 2500);
         }
       }
