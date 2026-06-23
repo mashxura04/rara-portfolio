@@ -319,29 +319,18 @@
       border-radius: var(--radius-lg);
       padding: 16px 20px;
       display: flex;
-      flex-direction: column;
-      transition: border-color 0.25s, transform 0.2s, margin-bottom 0.3s ease;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: border-color 0.25s, transform 0.2s;
       cursor: pointer;
     }
     .project-card:hover {
       border-color: var(--accent-glow);
       transform: translateY(-3px);
     }
-    .project-card.expanded {
-      border-color: var(--accent);
-      box-shadow: 0 0 30px rgba(124,110,242,0.1);
-      margin-bottom: 12px;
-    }
     
-    /* Top row layout (text + thumbnail) */
-    .project-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      width: 100%;
-    }
-
     /* Left side: Text */
     .project-info {
       display: flex;
@@ -421,57 +410,11 @@
       display: block;
     }
 
-    /* ── EXPANDABLE CONTENT ── */
-    .project-expandable-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.22, 0.68, 0, 1.1), opacity 0.4s ease, margin-top 0.3s ease;
-      opacity: 0;
-      width: 100%;
-    }
-    .project-card.expanded .project-expandable-content {
-      max-height: 800px; 
-      opacity: 1;
-      margin-top: 16px;
-    }
-    .expandable-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 12px 0;
-      border-top: 1px solid var(--border);
-    }
-    .expandable-images {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
-    }
-    .expandable-images img {
-      max-width: 100%;
-      height: auto;
-      max-height: 350px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      object-fit: contain;
-      background: var(--bg);
-      flex: 1 1 200px;
-    }
-    .expandable-context {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      text-align: left;
-    }
-    .expandable-context strong {
-      color: var(--text);
-    }
-
     @media (max-width: 680px) {
       .cert-grid {
         grid-template-columns: 1fr;
       }
-      .project-top-row {
+      .project-card {
         flex-direction: column;
         align-items: stretch;
         gap: 12px;
@@ -711,7 +654,7 @@
       <div class="cert-grid">
         
         <!-- CERT 1: bps.jpg -->
-        <div class="project-card reveal" onclick="toggleCard(this)">
+        <a href="certificate.html?id=1" class="project-card reveal" style="text-decoration:none; color:inherit;">
           <div class="project-top-row">
             <div class="project-info">
               <div class="project-title">Business & Professional Skills</div>
@@ -729,21 +672,10 @@
               </div>
             </div>
           </div>
-          <div class="project-expandable-content">
-            <div class="expandable-inner">
-              <div class="expandable-images">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/bps.jpg" alt="Full Certificate" />
-                <!-- Add extra images here if you have them -->
-              </div>
-              <div class="expandable-context">
-                <strong>Extra Context:</strong> This program was a deep dive into corporate communication. We learned how to present in front of executives and handle high-pressure negotiations.
-              </div>
-            </div>
-          </div>
-        </div>
+        </a>
 
         <!-- CERT 2: technovationgirls.jpg -->
-        <div class="project-card reveal reveal-delay-1" onclick="toggleCard(this)">
+        <a href="certificate.html?id=2" class="project-card reveal reveal-delay-1" style="text-decoration:none; color:inherit;">
           <div class="project-top-row">
             <div class="project-info">
               <div class="project-title">Technovation Girls Program</div>
@@ -761,20 +693,10 @@
               </div>
             </div>
           </div>
-          <div class="project-expandable-content">
-            <div class="expandable-inner">
-              <div class="expandable-images">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/technovationgirls.jpg" alt="Full Certificate" />
-              </div>
-              <div class="expandable-context">
-                <strong>Extra Context:</strong> Our team built a mobile app aimed at reducing food waste in local communities. We pitched it to a panel of judges and won the regional award.
-              </div>
-            </div>
-          </div>
-        </div>
+        </a>
 
         <!-- CERT 3: pitch.jpg -->
-        <div class="project-card reveal reveal-delay-2" onclick="toggleCard(this)">
+        <a href="certificate.html?id=3" class="project-card reveal reveal-delay-2" style="text-decoration:none; color:inherit;">
           <div class="project-top-row">
             <div class="project-info">
               <div class="project-title">Pitch & Presentation Skills</div>
@@ -792,20 +714,10 @@
               </div>
             </div>
           </div>
-          <div class="project-expandable-content">
-            <div class="expandable-inner">
-              <div class="expandable-images">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/pitch.jpg" alt="Full Certificate" />
-              </div>
-              <div class="expandable-context">
-                <strong>Extra Context:</strong> The final project required pitching a startup idea to a panel of mock investors. My pitch on EdTech solutions placed in the top 3.
-              </div>
-            </div>
-          </div>
-        </div>
+        </a>
 
         <!-- CERT 4: project.png -->
-        <div class="project-card reveal reveal-delay-3" onclick="toggleCard(this)">
+        <a href="certificate.html?id=4" class="project-card reveal reveal-delay-3" style="text-decoration:none; color:inherit;">
           <div class="project-top-row">
             <div class="project-info">
               <div class="project-title">Project Management Fundamentals</div>
@@ -823,20 +735,10 @@
               </div>
             </div>
           </div>
-          <div class="project-expandable-content">
-            <div class="expandable-inner">
-              <div class="expandable-images">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/project.png" alt="Full Certificate" />
-              </div>
-              <div class="expandable-context">
-                <strong>Extra Context:</strong> Learned the fundamentals of leading teams, using tools like Jira and Trello, and managing project lifecycles from initiation to closure.
-              </div>
-            </div>
-          </div>
-        </div>
+        </a>
 
         <!-- CERT 5: sport.jpg -->
-        <div class="project-card reveal reveal-delay-4" onclick="toggleCard(this)">
+        <a href="certificate.html?id=5" class="project-card reveal reveal-delay-4" style="text-decoration:none; color:inherit;">
           <div class="project-top-row">
             <div class="project-info">
               <div class="project-title">Sports Leadership & Teamwork</div>
@@ -854,20 +756,10 @@
               </div>
             </div>
           </div>
-          <div class="project-expandable-content">
-            <div class="expandable-inner">
-              <div class="expandable-images">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sport.jpg" alt="Full Certificate" />
-              </div>
-              <div class="expandable-context">
-                <strong>Extra Context:</strong> Led the school volleyball team as captain. Organized practice sessions, motivated teammates, and maintained high academic standing while competing.
-              </div>
-            </div>
-          </div>
-        </div>
+        </a>
 
         <!-- CERT 6: sth.jpg -->
-        <div class="project-card reveal" onclick="toggleCard(this)">
+        <a href="certificate.html?id=6" class="project-card reveal" style="text-decoration:none; color:inherit;">
           <div class="project-top-row">
             <div class="project-info">
               <div class="project-title">Edit Title (sth.jpg)</div>
@@ -884,20 +776,10 @@
               </div>
             </div>
           </div>
-          <div class="project-expandable-content">
-            <div class="expandable-inner">
-              <div class="expandable-images">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sth.jpg" alt="Full Certificate" />
-              </div>
-              <div class="expandable-context">
-                <strong>Extra Context:</strong> Write a brief story about why this certificate was meaningful to you.
-              </div>
-            </div>
-          </div>
-        </div>
+        </a>
 
         <!-- CERT 7: english.jpg -->
-        <div class="project-card reveal reveal-delay-1" onclick="toggleCard(this)">
+        <a href="certificate.html?id=7" class="project-card reveal reveal-delay-1" style="text-decoration:none; color:inherit;">
           <div class="project-top-row">
             <div class="project-info">
               <div class="project-title">English Language Proficiency</div>
@@ -915,20 +797,10 @@
               </div>
             </div>
           </div>
-          <div class="project-expandable-content">
-            <div class="expandable-inner">
-              <div class="expandable-images">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/english.jpg" alt="Full Certificate" />
-              </div>
-              <div class="expandable-context">
-                <strong>Extra Context:</strong> Prepared extensively through Cambridge materials and mock tests. This certification has opened doors to international programs and global opportunities.
-              </div>
-            </div>
-          </div>
-        </div>
+        </a>
 
         <!-- CERT 8: founders.jpg -->
-        <div class="project-card reveal reveal-delay-1" onclick="toggleCard(this)">
+        <a href="certificate.html?id=8" class="project-card reveal reveal-delay-1" style="text-decoration:none; color:inherit;">
           <div class="project-top-row">
             <div class="project-info">
               <div class="project-title">Founders Program</div>
@@ -946,17 +818,7 @@
               </div>
             </div>
           </div>
-          <div class="project-expandable-content">
-            <div class="expandable-inner">
-              <div class="expandable-images">
-                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/founders.jpg" alt="Full Certificate" />
-              </div>
-              <div class="expandable-context">
-                <strong>Extra Context:</strong> Designed a business model canvas for a tech solution that simplifies local logistics. Learned directly from experienced founders and venture capitalists.
-              </div>
-            </div>
-          </div>
-        </div>
+        </a>
 
       </div>
     </div>
@@ -1143,18 +1005,6 @@
     /* SCROLL REVEAL */
     const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.1});
     document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
-
-    /* TOGGLE EXPANDABLE CARDS */
-    function toggleCard(element) {
-      if (element.classList.contains('expanded')) {
-        element.classList.remove('expanded');
-      } else {
-        document.querySelectorAll('.project-card.expanded').forEach(card => {
-          card.classList.remove('expanded');
-        });
-        element.classList.add('expanded');
-      }
-    }
 
     /* NAV SHADOW */
     window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>20);});
