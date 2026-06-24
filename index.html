@@ -745,6 +745,117 @@
         grid-template-columns: 1fr;
       }
     }
+        /* ── SPINNING 3D GALAXY ── */
+    .galaxy-container {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15, 15, 18, 0.4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      perspective: 800px;
+    }
+
+    .galaxy-scene {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    /* The glowing purple core */
+    .galaxy-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin-top: -10px;
+      margin-left: -10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(124,110,242,0.2);
+      transform: translateZ(0);
+    }
+
+    /* The spinning rings */
+    .galaxy-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      border: 1.5px solid rgba(124, 110, 242, 0.5);
+      transform-style: preserve-3d;
+      box-shadow: 0 0 20px rgba(124,110,242,0.05);
+    }
+
+    .galaxy-ring-1 {
+      width: 120px;
+      height: 120px;
+      margin-top: -60px;
+      margin-left: -60px;
+      animation: spinX 12s linear infinite;
+    }
+    .galaxy-ring-2 {
+      width: 160px;
+      height: 160px;
+      margin-top: -80px;
+      margin-left: -80px;
+      animation: spinY 16s linear infinite;
+    }
+    .galaxy-ring-3 {
+      width: 100px;
+      height: 100px;
+      margin-top: -50px;
+      margin-left: -50px;
+      animation: spinZ 10s linear infinite;
+    }
+
+    @keyframes spinX {
+      0%   { transform: rotateX(0deg) rotateZ(0deg); }
+      100% { transform: rotateX(360deg) rotateZ(360deg); }
+    }
+    @keyframes spinY {
+      0%   { transform: rotateY(0deg) rotateZ(0deg); }
+      100% { transform: rotateY(360deg) rotateZ(360deg); }
+    }
+    @keyframes spinZ {
+      0%   { transform: rotateZ(0deg); }
+      100% { transform: rotateZ(360deg); }
+    }
+
+    /* Tiny floating dust particles for depth */
+    .galaxy-dust {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      box-shadow: 0 0 6px rgba(255,255,255,0.2);
+    }
+    .dust-1 { width: 2px; height: 2px; top: 20%; left: 30%; animation: floatDust 6s ease-in-out infinite; }
+    .dust-2 { width: 3px; height: 3px; bottom: 25%; right: 20%; animation: floatDust 8s ease-in-out infinite reverse; }
+    .dust-3 { width: 1.5px; height: 1.5px; top: 60%; left: 70%; animation: floatDust 5s ease-in-out infinite; }
+
+    @keyframes floatDust {
+      0%, 100% { transform: translateY(0px) scale(1); opacity: 0.4; }
+      50%      { transform: translateY(-15px) scale(1.5); opacity: 1; }
+    }
+
+    @media (max-width: 680px) {
+      .galaxy-container {
+        min-height: 180px;
+        margin-top: 24px;
+      }
+      .galaxy-scene { min-height: 180px; }
+      .galaxy-ring-1 { width: 100px; height: 100px; margin-top: -50px; margin-left: -50px; }
+      .galaxy-ring-2 { width: 130px; height: 130px; margin-top: -65px; margin-left: -65px; }
+      .galaxy-ring-3 { width: 80px; height: 80px; margin-top: -40px; margin-left: -40px; }
+    }
 
     /* ── CONTACT ── */
     .contact-body { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
@@ -949,16 +1060,32 @@
       <div class="section-border">
         <p class="label reveal">About me</p>
         <h2 class="reveal reveal-delay-1">Who I Am</h2>
-        <div class="about-body">
-          <div class="about-text reveal-left">
-            <p>I'm a student at <strong>School Number 63</strong>, currently in grade 10. I find meaning building at the intersection of <strong>software engineering and entrepreneurship</strong>— where ideas turn into products, and code becomes real-world impact.</p>
-            <p>I have always been fascinated by people who refuse to accept the world as it is. The ones who look at ordinary systems, broken patterns, and instinctively begin asking how they could be made better.The instinct to question existing systems and imagine better ones existed in me long before I had language for ambition itself.</p>
-            <p class="blockquote">"Humans exist not to extend a bloodline, but to leave a legacy of themselves"</p>     
-                                          
+      <div class="about-body">
+        <!-- Left Side: Text -->
+        <div class="about-text reveal-left">
+          <p>I'm a student at <strong>School Number 63</strong>, currently in grade 10. I find meaning building at the intersection of <strong>software engineering and entrepreneurship</strong>— where ideas turn into products, and code becomes real-world impact.</p>
+          <p>I have always been fascinated by people who refuse to accept the world as it is. The ones who look at ordinary systems, broken patterns, and instinctively begin asking how they could be made better.The instinct to question existing systems and imagine better ones existed in me long before I had language for ambition itself.</p>
+          <p class="blockquote">"Humans exist not to extend a bloodline, but to leave a legacy of themselves"</p>     
+        </div>
+
+        <!-- Right Side: Majestic Spinning Galaxy -->
+        <div class="reveal-right">
+          <div class="galaxy-container">
+            <div class="galaxy-scene">
+              <!-- Core -->
+              <div class="galaxy-core"></div>
+              <!-- Rings -->
+              <div class="galaxy-ring galaxy-ring-1"></div>
+              <div class="galaxy-ring galaxy-ring-2"></div>
+              <div class="galaxy-ring galaxy-ring-3"></div>
+              <!-- Dust -->
+              <div class="galaxy-dust dust-1"></div>
+              <div class="galaxy-dust dust-2"></div>
+              <div class="galaxy-dust dust-3"></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- EXPERIENCE & CERTIFICATES -->
