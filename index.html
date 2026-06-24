@@ -562,7 +562,7 @@
     .contact-link-arrow { color: var(--text-dim); font-size: 0.85rem; transition: color 0.18s; }
     .contact-link:hover .contact-link-arrow { color: var(--accent); }
 
-        /* ── PREMIUM ROUND CURSOR ── */
+         /* ── PREMIUM ROUND CURSOR ── */
     * {
       cursor: none !important;
     }
@@ -572,8 +572,8 @@
       left: 0;
       pointer-events: none;
       z-index: 99999;
-      width: 16px;
-      height: 16px;
+      width: 10px;          /* Reduced from 16px to 10px */
+      height: 10px;         /* Reduced from 16px to 10px */
       border-radius: 50%;
       background: #ffffff;
       transform: translate(-50%, -50%);
@@ -582,8 +582,8 @@
       mix-blend-mode: difference;
     }
     #custom-cursor.hover {
-      width: 40px;
-      height: 40px;
+      width: 28px;          /* Reduced from 40px to 28px */
+      height: 28px;         /* Reduced from 40px to 28px */
       background: rgba(124, 110, 242, 0.2);
       border: 2px solid var(--accent);
       box-shadow: 0 0 30px var(--accent-glow);
