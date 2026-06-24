@@ -215,7 +215,7 @@
     <nav class="sidebar-nav">
       <div class="nav-item active" data-panel="hero"><span class="nav-icon">🏠</span> Hero</div>
       <div class="nav-item" data-panel="about"><span class="nav-icon">👤</span> About</div>
-      <div class="nav-item" data-panel="experience"><span class="nav-icon">💼</span> Experience</div>
+      <!-- Experience tab removed -->
       <div class="nav-item" data-panel="skills"><span class="nav-icon">⚡</span> Skills</div>
       <div class="nav-item" data-panel="contact"><span class="nav-icon">✉️</span> Contact</div>
     </nav>
@@ -294,7 +294,7 @@
       </div>
       <div class="field">
         <label>Favorite Quote</label>
-        <input type="text" id="a-quote" placeholder="A quote you love or believe in" />
+        <input type="text" id="a-quote" placeholder="A quote you love or something you deeply believe in" />
       </div>
       <div class="divider"></div>
       <p class="panel-sub" style="margin-bottom:16px">Info Card</p>
@@ -319,13 +319,7 @@
       <div id="skill-groups"></div>
     </div>
 
-       <!-- ── EXPERIENCE PANEL ── -->
-    <div class="panel" id="panel-experience">
-      <div class="panel-title">Certificates & Experience</div>
-      <p class="panel-sub">Add up to 10 certificates. They'll display in a 2-column grid (5 left, 5 right).</p>
-      <div class="card-list" id="exp-list"></div>
-      <button class="btn-add-card" id="add-exp" style="margin-top:12px">+ Add Certificate</button>
-    </div>
+    <!-- Experience Panel Removed -->
 
     <!-- ── CONTACT PANEL ── -->
     <div class="panel" id="panel-contact">
@@ -379,18 +373,6 @@ const DEFAULTS = {
     Creative: ['Figma', 'Writing', 'Photography', 'Video Editing'],
     'Soft Skills': ['Leadership', 'Public Speaking', 'Project Management', 'Research'],
   },
-  experience: [
-    { date: 'Jan 2025 — Present', current: true, role: 'Role Title', company: 'Organization / Company Name', desc: 'What you did, what you built or led, and why it mattered.' },
-    { date: 'Sep 2024 — Dec 2024', current: false, role: 'Another Role or Project', company: 'Organization / Program Name', desc: 'Brief description of your responsibility and what you learned.' },
-    { date: '2023 — Present', current: false, role: 'Student', company: '[Your School]', desc: 'Studying [subjects]. GPA: [X.X]. Notable achievements: [awards].' },
-    { date: '2024', current: false, role: 'Course or Certification', company: 'Platform / Institution', desc: 'What the course covered and what you built or achieved.' },
-  ],
-  projects: [
-    { emoji: '🚀', name: 'Project One', desc: 'What this project is, what problem it solves, and what makes it interesting.', tags: 'Python, AI, Web', url: '#' },
-    { emoji: '🎯', name: 'Project Two', desc: 'What this project is, what problem it solves, and what makes it interesting.', tags: 'Design, Figma', url: '#' },
-    { emoji: '📊', name: 'Project Three', desc: 'What this project is, what problem it solves, and what makes it interesting.', tags: 'Research, Data', url: '#' },
-    { emoji: '🌱', name: 'Project Four', desc: 'What this project is, what problem it solves, and what makes it interesting.', tags: 'Community, Event', url: '#' },
-  ],
   contact: {
     intro: "Whether you're reviewing my application, looking to collaborate, or just want to talk — I'd genuinely love to hear from you.",
     p2: "I'm currently open to internships, programs, and research opportunities in [field]. Don't hesitate to reach out.",
@@ -513,60 +495,6 @@ function removeSkill(group, idx) {
   renderSkills();
 }
 
-/* ─── EXPERIENCE ─── */
-let expData = [];
-function renderExp() {
-  const list = document.getElementById('exp-list');
-  list.innerHTML = '';
-  expData.forEach((e, i) => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <div class="card-header" onclick="toggleCard(this)">
-        <span class="card-label">${e.role || 'Untitled Certificate'} — ${e.company || ''}</span>
-        <span class="card-toggle">▾</span>
-      </div>
-      <div class="card-body">
-        <div class="field-row">
-          <div class="field"><label>Date Range</label>
-            <input type="text" value="${e.date}" placeholder="Jan 2025 — Present"
-              oninput="expData[${i}].date=this.value; updateCardLabel(this,${i},'exp')" /></div>
-          <div class="field"><label>Current?</label>
-            <select onchange="expData[${i}].current=this.value==='true'">
-              <option value="false" ${!e.current?'selected':''}>No</option>
-              <option value="true"  ${e.current?'selected':''}>Yes (shows "Current" badge)</option>
-            </select></div>
-        </div>
-        <div class="field-row">
-          <div class="field"><label>Certificate / Role Title</label>
-            <input type="text" value="${e.role}" placeholder="Certificate title"
-              oninput="expData[${i}].role=this.value; updateCardLabel(this,${i},'exp')" /></div>
-          <div class="field"><label>Organization / Issuer</label>
-            <input type="text" value="${e.company}" placeholder="Issuer name"
-              oninput="expData[${i}].company=this.value; updateCardLabel(this,${i},'exp')" /></div>
-        </div>
-        <div class="field"><label>Description</label>
-          <textarea oninput="expData[${i}].desc=this.value" rows="2">${e.desc}</textarea></div>
-        <div class="field"><label>Certificate Image URL</label>
-          <input type="url" value="${e.image || ''}" placeholder="https://example.com/certificate.png"
-            oninput="expData[${i}].image=this.value" /></div>
-        <div class="card-actions">
-          <button class="btn-remove" onclick="removeExp(${i})">✕ Remove</button>
-        </div>
-      </div>`;
-    list.appendChild(card);
-  });
-}
-document.getElementById('add-exp').onclick = () => {
-  if (expData.length >= 10) {
-    alert('Maximum 10 certificates allowed (5 left, 5 right).');
-    return;
-  }
-  expData.push({ date: '', current: false, role: '', company: '', desc: '', image: '' });
-  renderExp();
-  document.querySelectorAll('#exp-list .card').forEach((c,i) => { if(i===expData.length-1) { c.classList.add('open'); } });
-};
-
 /* ─── CONTACT ─── */
 function populateContact(d) {
   const c = d.contact;
@@ -584,17 +512,6 @@ function collectContact(d) {
     linkedin: document.getElementById('c-linkedin').value,
     github: document.getElementById('c-github').value,
   };
-}
-
-/* ─── HELPERS ─── */
-function toggleCard(header) {
-  header.parentElement.classList.toggle('open');
-}
-function updateCardLabel(input, i, type) {
-  const card = input.closest('.card');
-  const label = card.querySelector('.card-label');
-  if (type === 'exp') label.textContent = (expData[i].role||'Untitled') + ' — ' + (expData[i].company||'');
-  if (type === 'proj') label.textContent = (projData[i].emoji||'📁') + ' ' + (projData[i].name||'Untitled');
 }
 
 /* ─── SIDEBAR NAV ─── */
@@ -615,7 +532,6 @@ document.getElementById('btn-save').addEventListener('click', () => {
   collectHero(d);
   collectAbout(d);
   d.skills = skillsData;
-  d.experience = expData;
   collectContact(d);
   saveData(d);
   const msg = document.getElementById('saved-msg');
@@ -628,9 +544,6 @@ const data = loadData();
 populateHero(data);
 populateAbout(data);
 skillsData = JSON.parse(JSON.stringify(data.skills));
-expData    = JSON.parse(JSON.stringify(data.experience));
-renderSkills();
-renderExp();
 populateContact(data);
 </script>
 </body>
