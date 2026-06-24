@@ -215,7 +215,6 @@
     <nav class="sidebar-nav">
       <div class="nav-item active" data-panel="hero"><span class="nav-icon">🏠</span> Hero</div>
       <div class="nav-item" data-panel="about"><span class="nav-icon">👤</span> About</div>
-      <!-- Experience tab removed -->
       <div class="nav-item" data-panel="skills"><span class="nav-icon">⚡</span> Skills</div>
       <div class="nav-item" data-panel="contact"><span class="nav-icon">✉️</span> Contact</div>
     </nav>
@@ -241,11 +240,11 @@
       <div class="field-row">
         <div class="field">
           <label>First Name</label>
-          <input type="Mashhura" id="h-first" placeholder="e.g. Alex" />
+          <input type="text" id="h-first" placeholder="e.g. Alex" />
         </div>
         <div class="field">
           <label>Last Name</label>
-          <input type="Kenjayeva" id="h-last" placeholder="e.g. Johnson" />
+          <input type="text" id="h-last" placeholder="e.g. Johnson" />
         </div>
       </div>
       <div class="field">
@@ -319,8 +318,6 @@
       <div id="skill-groups"></div>
     </div>
 
-    <!-- Experience Panel Removed -->
-
     <!-- ── CONTACT PANEL ── -->
     <div class="panel" id="panel-contact">
       <div class="panel-title">Contact</div>
@@ -347,204 +344,222 @@
   </main>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* ─── DEFAULT DATA ─── */
-const DEFAULTS = {
-  hero: {
-    firstName: 'Your', lastName: 'Name',
-    bio: 'A curious high schooler passionate about building things that matter. I turn ideas into projects, questions into answers, and energy into results.',
-    phrases: 'building things\nsolving problems\nlearning every day\nasking big questions\ncreating impact',
-    s1v: '16', s1k: 'Years old',
-    s2v: '3+', s2k: 'Projects built',
-    s3v: '2',  s3k: 'Clubs led',
-    s4v: '[City]', s4k: 'Based in',
-  },
-  about: {
-    p1: "I'm a student at [Your School], currently in [grade/year]. I'm deeply interested in [main interest] and spend most of my free time building projects and exploring new ideas.",
-    p2: "Outside of academics, I [hobby 1] and [hobby 2]. I believe the best way to understand something is to build something with it.",
-    p3: "I'm applying to programs in [field] and looking for opportunities where I can contribute, grow, and create real impact.",
-    quote: 'A quote you love or something you deeply believe in.',
-    age: '16 years old', school: '[Your School]',
-    loc: '[City, Country]', apply: '[Field / Program]',
-    lang: '[English, Uzbek…]', interests: '[AI, Design, Writing…]',
-  },
-  skills: {
-    Technical: ['Python', 'HTML / CSS', 'JavaScript', 'Math / Stats', 'Data Analysis'],
-    Creative: ['Figma', 'Writing', 'Photography', 'Video Editing'],
-    'Soft Skills': ['Leadership', 'Public Speaking', 'Project Management', 'Research'],
-  },
-  contact: {
-    intro: "Whether you're reviewing my application, looking to collaborate, or just want to talk — I'd genuinely love to hear from you.",
-    p2: "I'm currently open to internships, programs, and research opportunities in [field]. Don't hesitate to reach out.",
-    email: 'your@email.com',
-    linkedin: 'https://linkedin.com/in/yourprofile',
-    github: 'https://github.com/yourhandle',
-  },
-};
+  // --- CONNECT TO SUPABASE ---
+  const SUPABASE_URL = 'https://poluqlqzfdzhrbjvmdmh.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvbHVxbHF6ZmR6aHJianZtZG1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzMDQ1NTgsImV4cCI6MjA5Nzg4MDU1OH0.rNCceW1vCZYvwJ_00n-SYXXS4qdwWJVaop4oM6uIARQ';
+  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-/* ─── LOAD / SAVE ─── */
-function loadData() {
-  try { return JSON.parse(localStorage.getItem('portfolio_data')) || JSON.parse(JSON.stringify(DEFAULTS)); }
-  catch { return JSON.parse(JSON.stringify(DEFAULTS)); }
-}
-function saveData(data) {
-  localStorage.setItem('portfolio_data', JSON.stringify(data));
-}
-function getData() { return loadData(); }
-
-/* ─── POPULATE HERO ─── */
-function populateHero(d) {
-  const h = d.hero;
-  document.getElementById('h-first').value   = h.firstName || '';
-  document.getElementById('h-last').value    = h.lastName  || '';
-  document.getElementById('h-bio').value     = h.bio       || '';
-  document.getElementById('h-phrases').value = h.phrases   || '';
-  document.getElementById('s1-val').value = h.s1v || '';
-  document.getElementById('s1-key').value = h.s1k || '';
-  document.getElementById('s2-val').value = h.s2v || '';
-  document.getElementById('s2-key').value = h.s2k || '';
-  document.getElementById('s3-val').value = h.s3v || '';
-  document.getElementById('s3-key').value = h.s3k || '';
-  document.getElementById('s4-val').value = h.s4v || '';
-  document.getElementById('s4-key').value = h.s4k || '';
-}
-function collectHero(d) {
-  d.hero = {
-    firstName: document.getElementById('h-first').value,
-    lastName:  document.getElementById('h-last').value,
-    bio:        document.getElementById('h-bio').value,
-    phrases:    document.getElementById('h-phrases').value,
-    s1v: document.getElementById('s1-val').value,
-    s1k: document.getElementById('s1-key').value,
-    s2v: document.getElementById('s2-val').value,
-    s2k: document.getElementById('s2-key').value,
-    s3v: document.getElementById('s3-val').value,
-    s3k: document.getElementById('s3-key').value,
-    s4v: document.getElementById('s4-val').value,
-    s4k: document.getElementById('s4-key').value,
+  // --- DEFAULT DATA (in case DB is empty) ---
+  const DEFAULTS = {
+    hero: {
+      firstName: 'Your', lastName: 'Name',
+      bio: 'A curious high schooler passionate about building things that matter.',
+      phrases: 'building things\nsolving problems\nlearning every day',
+      s1v: '16', s1k: 'Years old',
+      s2v: '3+', s2k: 'Projects built',
+      s3v: '2', s3k: 'Clubs led',
+      s4v: '[City]', s4k: 'Based in',
+    },
+    about: {
+      p1: "I'm a student at [Your School].",
+      p2: "Outside of academics, I [hobby 1].",
+      p3: "I'm applying to programs in [field].",
+      quote: 'A quote you love.',
+      age: '16 years old', school: '[Your School]',
+      loc: '[City, Country]', apply: '[Field]',
+      lang: '[English, Uzbek…]', interests: '[AI, Design, Writing…]',
+    },
+    skills: {
+      Technical: ['Python', 'HTML / CSS', 'JavaScript'],
+      Creative: ['Figma', 'Writing'],
+      'Soft Skills': ['Leadership', 'Public Speaking'],
+    },
+    contact: {
+      intro: "Whether you're reviewing my application...",
+      p2: "I'm currently open to internships...",
+      email: 'your@email.com',
+      linkedin: 'https://linkedin.com/in/yourprofile',
+      github: 'https://github.com/yourhandle',
+    },
   };
-}
 
-/* ─── POPULATE ABOUT ─── */
-function populateAbout(d) {
-  const a = d.about;
-  document.getElementById('a-p1').value     = a.p1    || '';
-  document.getElementById('a-p2').value     = a.p2    || '';
-  document.getElementById('a-p3').value     = a.p3    || '';
-  document.getElementById('a-quote').value  = a.quote || '';
-  document.getElementById('i-age').value    = a.age   || '';
-  document.getElementById('i-school').value = a.school|| '';
-  document.getElementById('i-loc').value    = a.loc   || '';
-  document.getElementById('i-apply').value  = a.apply || '';
-  document.getElementById('i-lang').value   = a.lang  || '';
-  document.getElementById('i-interests').value = a.interests || '';
-}
-function collectAbout(d) {
-  d.about = {
-    p1: document.getElementById('a-p1').value,
-    p2: document.getElementById('a-p2').value,
-    p3: document.getElementById('a-p3').value,
-    quote: document.getElementById('a-quote').value,
-    age: document.getElementById('i-age').value,
-    school: document.getElementById('i-school').value,
-    loc: document.getElementById('i-loc').value,
-    apply: document.getElementById('i-apply').value,
-    lang: document.getElementById('i-lang').value,
-    interests: document.getElementById('i-interests').value,
-  };
-}
+  let currentData = {};
 
-/* ─── SKILLS ─── */
-let skillsData = {};
-function renderSkills() {
-  const container = document.getElementById('skill-groups');
-  container.innerHTML = '';
-  for (const [group, skills] of Object.entries(skillsData)) {
-    const div = document.createElement('div');
-    div.className = 'skill-group';
-    div.innerHTML = `
-      <div class="skill-group-head">
-        <span class="skill-group-name">${group}</span>
-      </div>
-      <div class="skill-tags" id="tags-${group}">
-        ${skills.map((s, i) => `
-          <span class="skill-tag">
-            ${s}
-            <button onclick="removeSkill('${group}', ${i})" title="Remove">×</button>
-          </span>`).join('')}
-      </div>
-      <div class="skill-add-row">
-        <input type="text" id="new-skill-${group}" placeholder="Add skill…" />
-        <button class="btn-sm" onclick="addSkill('${group}')">Add</button>
-      </div>
-      <div class="divider"></div>
-    `;
-    container.appendChild(div);
+  // --- LOAD DATA FROM SUPABASE ---
+  async function loadData() {
+    const { data, error } = await supabase
+      .from('portfolio_data')
+      .select('data')
+      .eq('section', 'portfolio')
+      .single();
+
+    if (error || !data) {
+      console.log('No data found in DB, loading defaults.');
+      currentData = JSON.parse(JSON.stringify(DEFAULTS));
+    } else {
+      currentData = data.data;
+    }
+    populateAllPanels();
   }
-}
-function addSkill(group) {
-  const inp = document.getElementById(`new-skill-${group}`);
-  const val = inp.value.trim();
-  if (!val) return;
-  skillsData[group].push(val);
-  inp.value = '';
-  renderSkills();
-}
-function removeSkill(group, idx) {
-  skillsData[group].splice(idx, 1);
-  renderSkills();
-}
 
-/* ─── CONTACT ─── */
-function populateContact(d) {
-  const c = d.contact;
-  document.getElementById('c-intro').value   = c.intro    || '';
-  document.getElementById('c-p2').value      = c.p2       || '';
-  document.getElementById('c-email').value   = c.email    || '';
-  document.getElementById('c-linkedin').value= c.linkedin || '';
-  document.getElementById('c-github').value  = c.github   || '';
-}
-function collectContact(d) {
-  d.contact = {
-    intro: document.getElementById('c-intro').value,
-    p2:    document.getElementById('c-p2').value,
-    email: document.getElementById('c-email').value,
-    linkedin: document.getElementById('c-linkedin').value,
-    github: document.getElementById('c-github').value,
-  };
-}
+  // --- SAVE DATA TO SUPABASE ---
+  async function saveData() {
+    collectAllPanels();
+    const { error } = await supabase
+      .from('portfolio_data')
+      .upsert({ section: 'portfolio', data: currentData });
 
-/* ─── SIDEBAR NAV ─── */
-document.querySelectorAll('.nav-item').forEach(item => {
-  item.addEventListener('click', () => {
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    item.classList.add('active');
-    const panelId = 'panel-' + item.dataset.panel;
-    document.getElementById(panelId).classList.add('active');
-    document.getElementById('panel-heading').textContent = item.textContent.trim();
+    if (error) {
+      alert('Error saving to Supabase: ' + error.message);
+    } else {
+      const msg = document.getElementById('saved-msg');
+      msg.classList.add('show');
+      setTimeout(() => msg.classList.remove('show'), 2000);
+    }
+  }
+
+  // --- POPULATE PANELS ---
+  function populateAllPanels() {
+    const h = currentData.hero || DEFAULTS.hero;
+    document.getElementById('h-first').value = h.firstName || '';
+    document.getElementById('h-last').value = h.lastName || '';
+    document.getElementById('h-bio').value = h.bio || '';
+    document.getElementById('h-phrases').value = h.phrases || '';
+    document.getElementById('s1-val').value = h.s1v || '';
+    document.getElementById('s1-key').value = h.s1k || '';
+    document.getElementById('s2-val').value = h.s2v || '';
+    document.getElementById('s2-key').value = h.s2k || '';
+    document.getElementById('s3-val').value = h.s3v || '';
+    document.getElementById('s3-key').value = h.s3k || '';
+    document.getElementById('s4-val').value = h.s4v || '';
+    document.getElementById('s4-key').value = h.s4k || '';
+
+    const a = currentData.about || DEFAULTS.about;
+    document.getElementById('a-p1').value = a.p1 || '';
+    document.getElementById('a-p2').value = a.p2 || '';
+    document.getElementById('a-p3').value = a.p3 || '';
+    document.getElementById('a-quote').value = a.quote || '';
+    document.getElementById('i-age').value = a.age || '';
+    document.getElementById('i-school').value = a.school || '';
+    document.getElementById('i-loc').value = a.loc || '';
+    document.getElementById('i-apply').value = a.apply || '';
+    document.getElementById('i-lang').value = a.lang || '';
+    document.getElementById('i-interests').value = a.interests || '';
+
+    const c = currentData.contact || DEFAULTS.contact;
+    document.getElementById('c-intro').value = c.intro || '';
+    document.getElementById('c-p2').value = c.p2 || '';
+    document.getElementById('c-email').value = c.email || '';
+    document.getElementById('c-linkedin').value = c.linkedin || '';
+    document.getElementById('c-github').value = c.github || '';
+
+    // Skills
+    const skills = currentData.skills || DEFAULTS.skills;
+    renderSkills(skills);
+  }
+
+  // --- COLLECT PANELS ---
+  function collectAllPanels() {
+    currentData.hero = {
+      firstName: document.getElementById('h-first').value,
+      lastName: document.getElementById('h-last').value,
+      bio: document.getElementById('h-bio').value,
+      phrases: document.getElementById('h-phrases').value,
+      s1v: document.getElementById('s1-val').value,
+      s1k: document.getElementById('s1-key').value,
+      s2v: document.getElementById('s2-val').value,
+      s2k: document.getElementById('s2-key').value,
+      s3v: document.getElementById('s3-val').value,
+      s3k: document.getElementById('s3-key').value,
+      s4v: document.getElementById('s4-val').value,
+      s4k: document.getElementById('s4-key').value,
+    };
+    currentData.about = {
+      p1: document.getElementById('a-p1').value,
+      p2: document.getElementById('a-p2').value,
+      p3: document.getElementById('a-p3').value,
+      quote: document.getElementById('a-quote').value,
+      age: document.getElementById('i-age').value,
+      school: document.getElementById('i-school').value,
+      loc: document.getElementById('i-loc').value,
+      apply: document.getElementById('i-apply').value,
+      lang: document.getElementById('i-lang').value,
+      interests: document.getElementById('i-interests').value,
+    };
+    currentData.contact = {
+      intro: document.getElementById('c-intro').value,
+      p2: document.getElementById('c-p2').value,
+      email: document.getElementById('c-email').value,
+      linkedin: document.getElementById('c-linkedin').value,
+      github: document.getElementById('c-github').value,
+    };
+    // Skills collected inside renderSkills
+  }
+
+  // --- SKILLS RENDER ---
+  function renderSkills(skills) {
+    const container = document.getElementById('skill-groups');
+    container.innerHTML = '';
+    // Save skills to currentData so save button works
+    currentData.skills = skills;
+    for (const [group, skillList] of Object.entries(skills)) {
+      const div = document.createElement('div');
+      div.className = 'skill-group';
+      div.innerHTML = `
+        <div class="skill-group-head">
+          <span class="skill-group-name">${group}</span>
+        </div>
+        <div class="skill-tags" id="tags-${group}">
+          ${skillList.map((s, i) => `
+            <span class="skill-tag">
+              ${s}
+              <button onclick="removeSkill('${group}', ${i})">×</button>
+            </span>`).join('')}
+        </div>
+        <div class="skill-add-row">
+          <input type="text" id="new-skill-${group}" placeholder="Add skill…" />
+          <button class="btn-sm" onclick="addSkill('${group}')">Add</button>
+        </div>
+        <div class="divider"></div>
+      `;
+      container.appendChild(div);
+    }
+  }
+
+  function addSkill(group) {
+    const inp = document.getElementById(`new-skill-${group}`);
+    const val = inp.value.trim();
+    if (!val) return;
+    if (!currentData.skills[group]) currentData.skills[group] = [];
+    currentData.skills[group].push(val);
+    inp.value = '';
+    renderSkills(currentData.skills);
+  }
+
+  function removeSkill(group, idx) {
+    currentData.skills[group].splice(idx, 1);
+    renderSkills(currentData.skills);
+  }
+
+  // --- SIDEBAR NAV ---
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      item.classList.add('active');
+      const panelId = 'panel-' + item.dataset.panel;
+      document.getElementById(panelId).classList.add('active');
+      document.getElementById('panel-heading').textContent = item.textContent.trim();
+    });
   });
-});
 
-/* ─── SAVE ─── */
-document.getElementById('btn-save').addEventListener('click', () => {
-  const d = loadData();
-  collectHero(d);
-  collectAbout(d);
-  d.skills = skillsData;
-  collectContact(d);
-  saveData(d);
-  const msg = document.getElementById('saved-msg');
-  msg.classList.add('show');
-  setTimeout(() => msg.classList.remove('show'), 2000);
-});
+  // --- SAVE BUTTON ---
+  document.getElementById('btn-save').addEventListener('click', saveData);
 
-/* ─── INIT ─── */
-const data = loadData();
-populateHero(data);
-populateAbout(data);
-skillsData = JSON.parse(JSON.stringify(data.skills));
-populateContact(data);
+  // --- INIT ---
+  loadData();
 </script>
 </body>
 </html>
