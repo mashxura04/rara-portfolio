@@ -567,7 +567,6 @@
       cursor: none !important;
     }
 
-    /* The glowing outer ring */
     #custom-cursor-ring {
       position: fixed;
       top: 0;
@@ -577,43 +576,42 @@
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      border: 1px solid rgba(124, 110, 242, 0.3);
+      border: 1px solid rgba(124, 110, 242, 0.4);
       background: rgba(124, 110, 242, 0.05);
       transform: translate(-50%, -50%);
-      transition: width 0.2s ease-out, height 0.2s ease-out, border-color 0.3s, background 0.3s;
-      box-shadow: 0 0 20px rgba(124, 110, 242, 0.1);
+      transition: width 0.25s ease-out, height 0.25s ease-out, border-color 0.3s, background 0.3s;
     }
 
-    /* The solid white center dot */
     #custom-cursor-dot {
       position: fixed;
       top: 0;
       left: 0;
       pointer-events: none;
       z-index: 99999;
-      width: 6px;
-      height: 6px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: #ffffff;
       transform: translate(-50%, -50%);
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
       mix-blend-mode: difference;
-      transition: width 0.2s, height 0.2s;
+      transition: width 0.25s ease-out, height 0.25s ease-out;
     }
 
-    /* When hovering over links, the ring grows and glows purple */
+    /* BOTH expand and stay big when hovering over links */
     #custom-cursor-ring.hover {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-color: var(--accent);
       background: rgba(124, 110, 242, 0.15);
       box-shadow: 0 0 30px var(--accent-glow);
     }
 
-    /* The white dot also grows slightly on hover */
     #custom-cursor-dot.hover {
-      width: 8px;
-      height: 8px;
+      width: 16px;
+      height: 16px;
+      background: #ffffff;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
     }
     
         /* ── CONTACT FORM (NEW) ── */
@@ -1359,19 +1357,18 @@
       };
       document.head.appendChild(script);
     })();
+
+    
     /* ── PREMIUM ROUND CURSOR ── */
-    // Create the outer ring
     const cursorRing = document.createElement('div');
     cursorRing.id = 'custom-cursor-ring';
     document.body.appendChild(cursorRing);
 
-    // Create the inner white dot
     const cursorDot = document.createElement('div');
     cursorDot.id = 'custom-cursor-dot';
     document.body.appendChild(cursorDot);
 
     document.addEventListener('mousemove', (e) => {
-      // Move both elements to the mouse position
       cursorRing.style.left = e.clientX + 'px';
       cursorRing.style.top = e.clientY + 'px';
       cursorDot.style.left = e.clientX + 'px';
@@ -1387,17 +1384,7 @@
       cursorDot.style.opacity = '1';
     });
 
-    // 💥 NEW CLICK PULSE EFFECT
-    document.addEventListener('mousedown', () => {
-      cursorDot.style.transform = 'translate(-50%, -50%) scale(1.4)';
-      cursorDot.style.transition = 'transform 0.05s ease-out';
-    });
-    document.addEventListener('mouseup', () => {
-      cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-      cursorDot.style.transition = 'transform 0.15s ease-out';
-    });
-
-    // Hover effect for both
+    // HOVER EFFECT: Expands BOTH the ring and the dot when over links
     const hoverElements = document.querySelectorAll('a, .btn, .project-card, .skill-card, .contact-link, button');
     hoverElements.forEach(el => {
       el.addEventListener('mouseenter', () => {
