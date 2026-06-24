@@ -562,6 +562,33 @@
     .contact-link-arrow { color: var(--text-dim); font-size: 0.85rem; transition: color 0.18s; }
     .contact-link:hover .contact-link-arrow { color: var(--accent); }
 
+        /* ── PREMIUM ROUND CURSOR ── */
+    * {
+      cursor: none !important;
+    }
+    #custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 99999;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ffffff;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s ease-out, height 0.2s ease-out, background 0.2s;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      mix-blend-mode: difference;
+    }
+    #custom-cursor.hover {
+      width: 40px;
+      height: 40px;
+      background: rgba(124, 110, 242, 0.2);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+
     
         /* ── CONTACT FORM (NEW) ── */
     .contact-form {
@@ -1307,18 +1334,14 @@
       document.head.appendChild(script);
     })();
 
-    /* ── PREMIUM FUNCTIONAL CURSOR ── */
+      /* ── PREMIUM ROUND CURSOR ── */
     const cursor = document.createElement('div');
-    cursor.classList.add('magic-cursor', 'default');
+    cursor.id = 'custom-cursor';
     document.body.appendChild(cursor);
 
-    let mouseX = 0, mouseY = 0;
-
     document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
     });
 
     document.addEventListener('mouseleave', () => {
@@ -1334,6 +1357,7 @@
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
 
+    
     /* FLOATING QUOTES */
     const quotes=["Stay hungry. Stay foolish.","Build things that matter.","The best time to start is now.","Curiosity is a superpower.","Dream big. Start small.","Every expert was once a beginner.","Consistency beats talent.","Make it work. Make it better.","Think different.","Do what you love.","Keep going.","Ideas are worthless without action.","Learn. Build. Share. Repeat.","Be the change.","One more try.","Ship it.","Code the future.","Make your mark.","The world needs your ideas.","Question everything."];
     const layer=document.getElementById('quotes-layer');
