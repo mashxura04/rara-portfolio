@@ -566,29 +566,55 @@
     * {
       cursor: none !important;
     }
-    #custom-cursor {
+
+    /* The glowing outer ring */
+    #custom-cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 99998;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(124, 110, 242, 0.3);
+      background: rgba(124, 110, 242, 0.05);
+      transform: translate(-50%, -50%);
+      transition: width 0.2s ease-out, height 0.2s ease-out, border-color 0.3s, background 0.3s;
+      box-shadow: 0 0 20px rgba(124, 110, 242, 0.1);
+    }
+
+    /* The solid white center dot */
+    #custom-cursor-dot {
       position: fixed;
       top: 0;
       left: 0;
       pointer-events: none;
       z-index: 99999;
-      width: 10px;          /* Reduced from 16px to 10px */
-      height: 10px;         /* Reduced from 16px to 10px */
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #ffffff;
       transform: translate(-50%, -50%);
-      transition: width 0.2s ease-out, height 0.2s ease-out, background 0.2s;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
       mix-blend-mode: difference;
+      transition: width 0.2s, height 0.2s;
     }
-    #custom-cursor.hover {
-      width: 28px;          /* Reduced from 40px to 28px */
-      height: 28px;         /* Reduced from 40px to 28px */
-      background: rgba(124, 110, 242, 0.2);
-      border: 2px solid var(--accent);
+
+    /* When hovering over links, the ring grows and glows purple */
+    #custom-cursor-ring.hover {
+      width: 48px;
+      height: 48px;
+      border-color: var(--accent);
+      background: rgba(124, 110, 242, 0.15);
       box-shadow: 0 0 30px var(--accent-glow);
     }
 
+    /* The white dot also grows slightly on hover */
+    #custom-cursor-dot.hover {
+      width: 8px;
+      height: 8px;
+    }
     
         /* ── CONTACT FORM (NEW) ── */
     .contact-form {
@@ -1334,29 +1360,47 @@
       document.head.appendChild(script);
     })();
 
-      /* ── PREMIUM ROUND CURSOR ── */
-    const cursor = document.createElement('div');
-    cursor.id = 'custom-cursor';
-    document.body.appendChild(cursor);
+         /* ── PREMIUM ROUND CURSOR ── */
+    // Create the outer ring
+    const cursorRing = document.createElement('div');
+    cursorRing.id = 'custom-cursor-ring';
+    document.body.appendChild(cursorRing);
+
+    // Create the inner white dot
+    const cursorDot = document.createElement('div');
+    cursorDot.id = 'custom-cursor-dot';
+    document.body.appendChild(cursorDot);
 
     document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
+      // Move both elements to the mouse position
+      cursorRing.style.left = e.clientX + 'px';
+      cursorRing.style.top = e.clientY + 'px';
+      cursorDot.style.left = e.clientX + 'px';
+      cursorDot.style.top = e.clientY + 'px';
     });
 
     document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
+      cursorRing.style.opacity = '0';
+      cursorDot.style.opacity = '0';
     });
     document.addEventListener('mouseenter', () => {
-      cursor.style.opacity = '1';
+      cursorRing.style.opacity = '1';
+      cursorDot.style.opacity = '1';
     });
 
+    // Hover effect for both
     const hoverElements = document.querySelectorAll('a, .btn, .project-card, .skill-card, .contact-link, button');
     hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      el.addEventListener('mouseenter', () => {
+        cursorRing.classList.add('hover');
+        cursorDot.classList.add('hover');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursorRing.classList.remove('hover');
+        cursorDot.classList.remove('hover');
+      });
     });
-
+    
     
     /* FLOATING QUOTES */
     const quotes=["Stay hungry. Stay foolish.","Build things that matter.","The best time to start is now.","Curiosity is a superpower.","Dream big. Start small.","Every expert was once a beginner.","Consistency beats talent.","Make it work. Make it better.","Think different.","Do what you love.","Keep going.","Ideas are worthless without action.","Learn. Build. Share. Repeat.","Be the change.","One more try.","Ship it.","Code the future.","Make your mark.","The world needs your ideas.","Question everything."];
