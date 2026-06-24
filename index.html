@@ -1359,8 +1359,7 @@
       };
       document.head.appendChild(script);
     })();
-
-         /* ── PREMIUM ROUND CURSOR ── */
+    /* ── PREMIUM ROUND CURSOR ── */
     // Create the outer ring
     const cursorRing = document.createElement('div');
     cursorRing.id = 'custom-cursor-ring';
@@ -1386,6 +1385,16 @@
     document.addEventListener('mouseenter', () => {
       cursorRing.style.opacity = '1';
       cursorDot.style.opacity = '1';
+    });
+
+    // 💥 NEW CLICK PULSE EFFECT
+    document.addEventListener('mousedown', () => {
+      cursorDot.style.transform = 'translate(-50%, -50%) scale(1.4)';
+      cursorDot.style.transition = 'transform 0.05s ease-out';
+    });
+    document.addEventListener('mouseup', () => {
+      cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+      cursorDot.style.transition = 'transform 0.15s ease-out';
     });
 
     // Hover effect for both
