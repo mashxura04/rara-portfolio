@@ -1307,41 +1307,31 @@
       document.head.appendChild(script);
     })();
 
-    /* ── CUSTOM CURSOR ── */
-    const cursorDot = document.createElement('div');
-    cursorDot.classList.add('cursor-dot');
-    document.body.appendChild(cursorDot);
-
-    const cursorRing = document.createElement('div');
-    cursorRing.classList.add('cursor-ring');
-    document.body.appendChild(cursorRing);
+    /* ── PREMIUM FUNCTIONAL CURSOR ── */
+    const cursor = document.createElement('div');
+    cursor.classList.add('magic-cursor', 'default');
+    document.body.appendChild(cursor);
 
     let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
 
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      
-      cursorDot.style.left = mouseX + 'px';
-      cursorDot.style.top = mouseY + 'px';
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
     });
 
-    function animateCursor() {
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
-      
-      cursorRing.style.left = ringX + 'px';
-      cursorRing.style.top = ringY + 'px';
-      
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
+    document.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      cursor.style.opacity = '1';
+    });
 
-    const hoverElements = document.querySelectorAll('a, .btn, .project-card, .skill-card, .contact-link');
+    const hoverElements = document.querySelectorAll('a, .btn, .project-card, .skill-card, .contact-link, button');
     hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
 
     /* FLOATING QUOTES */
