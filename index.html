@@ -160,6 +160,30 @@
       line-height: 1.15; color: var(--text); margin-bottom: 36px;
     }
 
+    /* ── SECTION BORDERS ── */
+    .section-border {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 48px;
+      margin-top: 12px;
+      transition: border-color 0.3s;
+      background: rgba(15, 15, 18, 0.3);
+    }
+    .section-border:hover {
+      border-color: var(--border-light);
+    }
+
+    @media (max-width: 680px) {
+      .section-border {
+        padding: 24px 16px;
+        border-radius: var(--radius);
+        margin-left: -16px;
+        margin-right: -16px;
+        border-left: none;
+        border-right: none;
+      }
+    }
+
     /* ── HERO ── */
 #hero { padding: 80px 0 80px; border-bottom: 1px solid var(--border); }
    .hero-grid {
@@ -922,14 +946,15 @@
     <div class="container">
       <p class="label reveal">About me</p>
       <h2 class="reveal reveal-delay-1">Who I am</h2>
-      <div class="about-body">
-        <div class="about-text reveal-left">
-          <p>I'm a student at <strong>School Number 63</strong>, currently in grade 10. I find meaning building at the intersection of <strong>software engineering and entrepreneurship</strong>— where ideas turn into products, and code becomes real-world impact.</p>
-          <p>I have always been fascinated by people who refuse to accept the world as it is. The ones who look at ordinary systems, broken patterns, and instinctively begin asking how they could be made better.The instinct to question existing systems and imagine better ones existed in me long before I had language for ambition itself.</p>
-          <p class="blockquote">"Humans exist not to extend a bloodline, but to leave a legacy of themselves"</p>     
+      <div class="section-border">
+        <div class="about-body">
+          <div class="about-text reveal-left">
+            <p>I'm a student at <strong>School Number 63</strong>, currently in grade 10. I find meaning building at the intersection of <strong>software engineering and entrepreneurship</strong>— where ideas turn into products, and code becomes real-world impact.</p>
+            <p>I have always been fascinated by people who refuse to accept the world as it is. The ones who look at ordinary systems, broken patterns, and instinctively begin asking how they could be made better.The instinct to question existing systems and imagine better ones existed in me long before I had language for ambition itself.</p>
+            <p class="blockquote">"Humans exist not to extend a bloodline, but to leave a legacy of themselves"</p>     
                                           
+          </div>
         </div>
-     
       </div>
     </div>
   </section>
@@ -939,160 +964,161 @@
     <div class="container">
       <p class="label reveal">What I've done</p>
       <h2 class="reveal reveal-delay-1">Experience & Certificates</h2>
-      <div class="cert-grid">
+      <div class="section-border">
+        <div class="cert-grid">
         
-        <!-- CERT 1: bps.jpg -->
-        <a href="certificate.html?id=1" class="project-card reveal" id="cert-card-1">
-          <div class="project-info">
-            <div class="project-title">BPS HACKATHON</div>
-            <div class="project-desc">Participated in an intensive two-day hackathon where my team and I worked under pressure to identify a real-world problem, develop an innovative solution, and transform our ideas into a working project.</div>
-            <div class="project-tags">
-              <span class="tag">Startup Thinking</span>
-              <span class="tag">Team Collaboration</span>
+          <!-- CERT 1: bps.jpg -->
+          <a href="certificate.html?id=1" class="project-card reveal" id="cert-card-1">
+            <div class="project-info">
+              <div class="project-title">BPS HACKATHON</div>
+              <div class="project-desc">Participated in an intensive two-day hackathon where my team and I worked under pressure to identify a real-world problem, develop an innovative solution, and transform our ideas into a working project.</div>
+              <div class="project-tags">
+                <span class="tag">Startup Thinking</span>
+                <span class="tag">Team Collaboration</span>
+              </div>
+              <div class="project-status">March 2025</div>
             </div>
-            <div class="project-status">March 2025</div>
-          </div>
-          <div class="project-right">
-            <div class="project-badge">Certified</div>
-            <div class="project-image-wrapper">
-              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/bps.jpg" alt="Business Certificate" />
+            <div class="project-right">
+              <div class="project-badge">Certified</div>
+              <div class="project-image-wrapper">
+                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/bps.jpg" alt="Business Certificate" />
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-        <!-- CERT 2: technovationgirls.jpg -->
-        <a href="certificate.html?id=2" class="project-card reveal reveal-delay-1" id="cert-card-2">
-          <div class="project-info">
-            <div class="project-title">Technovation Girls Program</div>
-            <div class="project-desc"> The GLOBAL Technovation Girls program, building a tech-based solution to an existing problem in the world.</div>
-            <div class="project-tags">
-              <span class="tag">Web Development</span>
-              <span class="tag">Tech for Good</span>
+          <!-- CERT 2: technovationgirls.jpg -->
+          <a href="certificate.html?id=2" class="project-card reveal reveal-delay-1" id="cert-card-2">
+            <div class="project-info">
+              <div class="project-title">Technovation Girls Program</div>
+              <div class="project-desc"> The GLOBAL Technovation Girls program, building a tech-based solution to an existing problem in the world.</div>
+              <div class="project-tags">
+                <span class="tag">Web Development</span>
+                <span class="tag">Tech for Good</span>
+              </div>
+              <div class="project-status">May 2026</div>
             </div>
-            <div class="project-status">May 2026</div>
-          </div>
-          <div class="project-right">
-            <div class="project-badge">Award</div>
-            <div class="project-image-wrapper">
-              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/technovationgirls.jpg" alt="Technovation Girls Certificate" />
+            <div class="project-right">
+              <div class="project-badge">Award</div>
+              <div class="project-image-wrapper">
+                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/technovationgirls.jpg" alt="Technovation Girls Certificate" />
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-        <!-- CERT 3: pitch.jpg -->
-        <a href="certificate.html?id=3" class="project-card reveal reveal-delay-2" id="cert-card-3">
-          <div class="project-info">
-            <div class="project-title">Startup Fest Pitch</div>
-            <div class="project-desc">In a startup-focused innovation event where I had the opportunity to present my project in front of experienced entrepreneurs and industry leaders.</div>
-            <div class="project-tags">
-              <span class="tag">Pitching</span>
-              <span class="tag">Public Speaking</span>
+          <!-- CERT 3: pitch.jpg -->
+          <a href="certificate.html?id=3" class="project-card reveal reveal-delay-2" id="cert-card-3">
+            <div class="project-info">
+              <div class="project-title">Startup Fest Pitch</div>
+              <div class="project-desc">In a startup-focused innovation event where I had the opportunity to present my project in front of experienced entrepreneurs and industry leaders.</div>
+              <div class="project-tags">
+                <span class="tag">Pitching</span>
+                <span class="tag">Public Speaking</span>
+              </div>
+              <div class="project-status">June 2026</div>
             </div>
-            <div class="project-status">June 2026</div>
-          </div>
-          <div class="project-right">
-            <div class="project-badge">Award</div>
-            <div class="project-image-wrapper">
-              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/pitch.jpg" alt="Pitch Certificate" />
+            <div class="project-right">
+              <div class="project-badge">Award</div>
+              <div class="project-image-wrapper">
+                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/pitch.jpg" alt="Pitch Certificate" />
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-        <!-- CERT 4: project.png -->
-        <a href="certificate.html?id=4" class="project-card reveal reveal-delay-3" id="cert-card-4">
-          <div class="project-info">
-            <div class="project-title">My First Startup Platform</div>
-            <div class="project-desc">Currently developing Budgetravel, a startup focused on transforming tourism in Uzbekistan through authentic cultural experiences and local economic empowerment.</div>
-            <div class="project-tags">
-              <span class="tag">Technical Execution</span>
-              <span class="tag">System Design</span>
+          <!-- CERT 4: project.png -->
+          <a href="certificate.html?id=4" class="project-card reveal reveal-delay-3" id="cert-card-4">
+            <div class="project-info">
+              <div class="project-title">My First Startup Platform</div>
+              <div class="project-desc">Currently developing Budgetravel, a startup focused on transforming tourism in Uzbekistan through authentic cultural experiences and local economic empowerment.</div>
+              <div class="project-tags">
+                <span class="tag">Technical Execution</span>
+                <span class="tag">System Design</span>
+              </div>
+              <div class="project-status">Spring 2026</div>
             </div>
-            <div class="project-status">Spring 2026</div>
-          </div>
-          <div class="project-right">
-            <div class="project-badge">Ongoing</div>
-            <div class="project-image-wrapper">
-              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/project.png" alt="Project Management Certificate" />
+            <div class="project-right">
+              <div class="project-badge">Ongoing</div>
+              <div class="project-image-wrapper">
+                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/project.png" alt="Project Management Certificate" />
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-        <!-- CERT 5: sport.jpg -->
-        <a href="certificate.html?id=5" class="project-card reveal reveal-delay-4" id="cert-card-5">
-          <div class="project-info">
-            <div class="project-title">Athletics & Volleyball </div>
-            <div class="project-desc">From 2019 to 2023, I trained and competed in athletics and volleyball, participating in multiple regional competitions.</div>
-            <div class="project-tags">
-              <span class="tag">Athletic Discipline</span>
-              <span class="tag">Coaching</span>
+          <!-- CERT 5: sport.jpg -->
+          <a href="certificate.html?id=5" class="project-card reveal reveal-delay-4" id="cert-card-5">
+            <div class="project-info">
+              <div class="project-title">Athletics & Volleyball </div>
+              <div class="project-desc">From 2019 to 2023, I trained and competed in athletics and volleyball, participating in multiple regional competitions.</div>
+              <div class="project-tags">
+                <span class="tag">Athletic Discipline</span>
+                <span class="tag">Coaching</span>
+              </div>
+              <div class="project-status">2019-2023</div>
             </div>
-            <div class="project-status">2019-2023</div>
-          </div>
-          <div class="project-right">
-            <div class="project-badge">Award</div>
-            <div class="project-image-wrapper">
-              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sport.jpg" alt="Sports Certificate" />
+            <div class="project-right">
+              <div class="project-badge">Award</div>
+              <div class="project-image-wrapper">
+                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sport.jpg" alt="Sports Certificate" />
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-        <!-- CERT 6: sth.jpg -->
-        <a href="certificate.html?id=6" class="project-card reveal" id="cert-card-6">
-          <div class="project-info">
-            <div class="project-title">Start-up Ambassador</div>
-            <div class="project-desc">Representing my city Gijduvan in Startup Ambassadors Uzbekistan, I contribute to strengthening local startup culture by organizing workshops in my region.</div>
-            <div class="project-tags">
-              <span class="tag">Ecosystem building</span>
-              <span class="tag">Event Organization</span>
+          <!-- CERT 6: sth.jpg -->
+          <a href="certificate.html?id=6" class="project-card reveal" id="cert-card-6">
+            <div class="project-info">
+              <div class="project-title">Start-up Ambassador</div>
+              <div class="project-desc">Representing my city Gijduvan in Startup Ambassadors Uzbekistan, I contribute to strengthening local startup culture by organizing workshops in my region.</div>
+              <div class="project-tags">
+                <span class="tag">Ecosystem building</span>
+                <span class="tag">Event Organization</span>
+              </div>
+              <div class="project-status">2026-2027</div>
             </div>
-            <div class="project-status">2026-2027</div>
-          </div>
-          <div class="project-right">
-            <div class="project-badge">Ongoing</div>
-            <div class="project-image-wrapper">
-              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sth.jpg" alt="Certificate" />
+            <div class="project-right">
+              <div class="project-badge">Ongoing</div>
+              <div class="project-image-wrapper">
+                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sth.jpg" alt="Certificate" />
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-        <!-- CERT 7: english.jpg -->
-        <a href="certificate.html?id=7" class="project-card reveal reveal-delay-1" id="cert-card-7">
-          <div class="project-info">
-            <div class="project-title">English Olympiad</div>
-            <div class="project-desc">Over the years, I regularly participated in numerous national and international English Olympiads, consistently achieving top results.</div>
-            <div class="project-tags">
-              <span class="tag">Competitive Achievement</span>
-            
+          <!-- CERT 7: english.jpg -->
+          <a href="certificate.html?id=7" class="project-card reveal reveal-delay-1" id="cert-card-7">
+            <div class="project-info">
+              <div class="project-title">English Olympiad</div>
+              <div class="project-desc">Over the years, I regularly participated in numerous national and international English Olympiads, consistently achieving top results.</div>
+              <div class="project-tags">
+                <span class="tag">Competitive Achievement</span>
+              </div>
+              <div class="project-status">2024-2025</div>
             </div>
-            <div class="project-status">2024-2025</div>
-          </div>
-          <div class="project-right">
-            <div class="project-badge">Diploma</div>
-            <div class="project-image-wrapper">
-              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/english.jpg" alt="English Certificate" />
+            <div class="project-right">
+              <div class="project-badge">Diploma</div>
+              <div class="project-image-wrapper">
+                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/english.jpg" alt="English Certificate" />
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-        <!-- CERT 8: founders.jpg -->
-        <a href="certificate.html?id=8" class="project-card reveal reveal-delay-1" id="cert-card-8">
-          <div class="project-info">
-            <div class="project-title"> Bukhara Founders</div>
-            <div class="project-desc">Selected as a young founder in a community program by Bukhara Founders Community, gaining exposure to real startup-building environments and founder-level discussions.</div>
-            <div class="project-tags">
-              <span class="tag">Entrepreneurship</span>
-              <span class="tag">Startup</span>
+          <!-- CERT 8: founders.jpg -->
+          <a href="certificate.html?id=8" class="project-card reveal reveal-delay-1" id="cert-card-8">
+            <div class="project-info">
+              <div class="project-title"> Bukhara Founders</div>
+              <div class="project-desc">Selected as a young founder in a community program by Bukhara Founders Community, gaining exposure to real startup-building environments and founder-level discussions.</div>
+              <div class="project-tags">
+                <span class="tag">Entrepreneurship</span>
+                <span class="tag">Startup</span>
+              </div>
+              <div class="project-status">June 2026</div>
             </div>
-            <div class="project-status">June 2026</div>
-          </div>
-          <div class="project-right">
-            <div class="project-badge">Ongoing</div>
-            <div class="project-image-wrapper">
-              <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/founders.jpg" alt="Founders Program Certificate" />
+            <div class="project-right">
+              <div class="project-badge">Ongoing</div>
+              <div class="project-image-wrapper">
+                <img src="https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/founders.jpg" alt="Founders Program Certificate" />
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
+        </div>
       </div>
     </div>
   </section>
@@ -1102,98 +1128,99 @@
     <div class="container">
       <p class="label reveal">What I know</p>
       <h2 class="reveal reveal-delay-1">My Skills</h2>
-            <div class="skills-grid">
+      <div class="section-border">
+        <div class="skills-grid">
         
-        <!-- CARD 1: Innovation & Problem Solving (Yellow) -->
-        <div class="skill-card reveal reveal-delay-1 card-yellow">
-          <div class="skill-icon-wrapper">
-            <!-- Premium Idea Icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-              <circle cx="12" cy="12" r="5" fill="#eab308" fill-opacity="0.2"/>
-              <path d="M12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-            </svg>
-          </div>
-          <div class="skill-content">
-            <div class="skill-title">Innovation & Problem Solving</div>
-            <div class="skill-level">Proficient</div>
-            <div class="skill-tags">
-              <span>Hackathons</span>
-              <span>Startup Thinking</span>
-              <span>Research</span>
+          <!-- CARD 1: Innovation & Problem Solving (Yellow) -->
+          <div class="skill-card reveal reveal-delay-1 card-yellow">
+            <div class="skill-icon-wrapper">
+              <!-- Premium Idea Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                <circle cx="12" cy="12" r="5" fill="#eab308" fill-opacity="0.2"/>
+                <path d="M12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+              </svg>
+            </div>
+            <div class="skill-content">
+              <div class="skill-title">Innovation & Problem Solving</div>
+              <div class="skill-level">Proficient</div>
+              <div class="skill-tags">
+                <span>Hackathons</span>
+                <span>Startup Thinking</span>
+                <span>Research</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- CARD 2: MVP Development (Purple - Intermediate) -->
-        <div class="skill-card reveal reveal-delay-2 card-purple">
-          <div class="skill-icon-wrapper">
-            <!-- Premium Rocket Icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4.5 16.5c-1.5 1.26-2 3-2 4.5 1.5 0 3.24-.5 4.5-2"/>
-              <path d="M14.5 4.5c1.5-1.26 3-2 4.5-2 0 1.5-.5 3.24-2 4.5"/>
-              <path d="M12 20c-4 0-6-2-6-6 0-2.5 1.5-5 4-6s5.5-.5 7.5 1.5 2.5 4.5 1.5 7.5-3.5 4-6 4z"/>
-              <circle cx="12" cy="12" r="3" fill="#a78bfa" fill-opacity="0.2"/>
-              <path d="M12 9v3l2 1"/>
-            </svg>
-          </div>
-          <div class="skill-content">
-            <div class="skill-title">MVP Development</div>
-            <div class="skill-level">Intermediate</div>
-            <div class="skill-tags">
-              <span>HTML / CSS</span>
-              <span>JavaScript</span>
-              <span>Project Management</span>
+          <!-- CARD 2: MVP Development (Purple - Intermediate) -->
+          <div class="skill-card reveal reveal-delay-2 card-purple">
+            <div class="skill-icon-wrapper">
+              <!-- Premium Rocket Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 3-2 4.5 1.5 0 3.24-.5 4.5-2"/>
+                <path d="M14.5 4.5c1.5-1.26 3-2 4.5-2 0 1.5-.5 3.24-2 4.5"/>
+                <path d="M12 20c-4 0-6-2-6-6 0-2.5 1.5-5 4-6s5.5-.5 7.5 1.5 2.5 4.5 1.5 7.5-3.5 4-6 4z"/>
+                <circle cx="12" cy="12" r="3" fill="#a78bfa" fill-opacity="0.2"/>
+                <path d="M12 9v3l2 1"/>
+              </svg>
+            </div>
+            <div class="skill-content">
+              <div class="skill-title">MVP Development</div>
+              <div class="skill-level">Intermediate</div>
+              <div class="skill-tags">
+                <span>HTML / CSS</span>
+                <span>JavaScript</span>
+                <span>Project Management</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- CARD 3: Communication & Networking (Blue - Advanced) -->
-        <div class="skill-card reveal reveal-delay-3 card-blue">
-          <div class="skill-icon-wrapper">
-            <!-- Premium People/Network Icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4" fill="#60a5fa" fill-opacity="0.2"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </div>
-          <div class="skill-content">
-            <div class="skill-title">Communication & Networking</div>
-            <div class="skill-level">Advanced</div>
-            <div class="skill-tags">
-              <span>Public Speaking</span>
-              <span>Leadership</span>
-              <span>Writing</span>
+          <!-- CARD 3: Communication & Networking (Blue - Advanced) -->
+          <div class="skill-card reveal reveal-delay-3 card-blue">
+            <div class="skill-icon-wrapper">
+              <!-- Premium People/Network Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4" fill="#60a5fa" fill-opacity="0.2"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="skill-content">
+              <div class="skill-title">Communication & Networking</div>
+              <div class="skill-level">Advanced</div>
+              <div class="skill-tags">
+                <span>Public Speaking</span>
+                <span>Leadership</span>
+                <span>Writing</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- CARD 4: Python (Green - Learning) -->
-        <div class="skill-card reveal reveal-delay-4 card-green">
-          <div class="skill-icon-wrapper">
-            <!-- Premium Python / Code Icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"/>
-              <polyline points="8 6 2 12 8 18"/>
-              <rect x="4" y="2" width="16" height="20" rx="2" stroke-opacity="0.4"/>
-              <path d="M9 12h6" stroke-width="3"/>
-              <circle cx="12" cy="12" r="1" fill="#34d399"/>
-            </svg>
-          </div>
-          <div class="skill-content">
-            <div class="skill-title">Python</div>
-            <div class="skill-level">Learning</div>
-            <div class="skill-tags">
-              <span>AI / Data</span>
-              <span>Automation</span>
-              <span>Problem Solving</span>
+          <!-- CARD 4: Python (Green - Learning) -->
+          <div class="skill-card reveal reveal-delay-4 card-green">
+            <div class="skill-icon-wrapper">
+              <!-- Premium Python / Code Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+                <rect x="4" y="2" width="16" height="20" rx="2" stroke-opacity="0.4"/>
+                <path d="M9 12h6" stroke-width="3"/>
+                <circle cx="12" cy="12" r="1" fill="#34d399"/>
+              </svg>
+            </div>
+            <div class="skill-content">
+              <div class="skill-title">Python</div>
+              <div class="skill-level">Learning</div>
+              <div class="skill-tags">
+                <span>AI / Data</span>
+                <span>Automation</span>
+                <span>Problem Solving</span>
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1203,49 +1230,51 @@
     <div class="container">
       <p class="label reveal">Say hello</p>
       <h2 class="reveal reveal-delay-1">Let's connect</h2>
-      <div class="contact-body">
-        
-        <!-- Left side: Text -->
-        <div class="contact-text reveal-left">
-          <p>Whether you're reviewing my application, looking to collaborate, or just want to talk about <strong>something cooool</strong> — I'd be HAPPPY to hear from you. YESSSS, FROM YOUUU!!!</p>
-          <br>
-          <p>I'm currently <strong>open to internships, programs, and research opportunities</strong> in software engineering. DON'T hesitate to reach out.</p>
-        </div>
+      <div class="section-border">
+        <div class="contact-body">
+          
+          <!-- Left side: Text -->
+          <div class="contact-text reveal-left">
+            <p>Whether you're reviewing my application, looking to collaborate, or just want to talk about <strong>something cooool</strong> — I'd be HAPPPY to hear from you. YESSSS, FROM YOUUU!!!</p>
+            <br>
+            <p>I'm currently <strong>open to internships, programs, and research opportunities</strong> in software engineering. DON'T hesitate to reach out.</p>
+          </div>
 
-        <!-- Right side: Form -->
-        <div class="reveal-right" style="width:100%;">
-          <form id="contact-form" class="contact-form" action="https://formspree.io/f/mjgqkrre" method="POST">
-            
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">NAME</label>
-                <input type="text" id="name" name="name" placeholder="your name" required />
+          <!-- Right side: Form -->
+          <div class="reveal-right" style="width:100%;">
+            <form id="contact-form" class="contact-form" action="https://formspree.io/f/mjgqkrre" method="POST">
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">NAME</label>
+                  <input type="text" id="name" name="name" placeholder="your name" required />
+                </div>
+                <div class="form-group">
+                  <label for="email">EMAIL</label>
+                  <input type="email" id="email" name="email" placeholder="your@email.com" required />
+                </div>
               </div>
+
               <div class="form-group">
-                <label for="email">EMAIL</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required />
+                <label for="subject">SUBJECT</label>
+                <input type="text" id="subject" name="subject" placeholder="subject" />
               </div>
-            </div>
 
-            <div class="form-group">
-              <label for="subject">SUBJECT</label>
-              <input type="text" id="subject" name="subject" placeholder="subject" />
-            </div>
+              <div class="form-group">
+                <label for="message">MESSAGE</label>
+                <textarea id="message" name="message" rows="5" placeholder="feell totally freee to write" required></textarea>
+              </div>
 
-            <div class="form-group">
-              <label for="message">MESSAGE</label>
-              <textarea id="message" name="message" rows="5" placeholder="feell totally freee to write" required></textarea>
-            </div>
+              <button type="submit" id="submit-btn" class="btn-send">
+                <span id="btn-text">Send Message</span>
+                <span id="btn-icon">↗</span>
+                <div id="btn-spinner" style="display:none;"></div>
+              </button>
+            </form>
+            <div id="form-status" style="margin-top:16px; text-align:center; font-weight:500; display:none;"></div>
+          </div>
 
-            <button type="submit" id="submit-btn" class="btn-send">
-              <span id="btn-text">Send Message</span>
-              <span id="btn-icon">↗</span>
-              <div id="btn-spinner" style="display:none;"></div>
-            </button>
-          </form>
-          <div id="form-status" style="margin-top:16px; text-align:center; font-weight:500; display:none;"></div>
         </div>
-
       </div>
     </div>
   </section>
@@ -1514,4 +1543,3 @@
   </script>
 </body>
 </html>
-```
