@@ -79,17 +79,22 @@
       transition: box-shadow 0.3s;
     }
     nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.5); }
+    
     .nav-inner {
       max-width: 1200px; margin: 0 auto; padding: 0 48px;
       height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
+    
     .nav-logo {
       font-family: var(--font-display);
       font-weight: 800; font-size: 1.5rem;
       color: var(--text); text-decoration: none;
     }
     .nav-logo span { color: var(--accent); }
+    
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       font-size: 0.85rem; color: var(--text-muted);
@@ -103,6 +108,22 @@
     .nav-links a:hover { color: var(--text); }
     .nav-links a:hover::after { transform: scaleX(1); }
 
+    /* ── MOBILE NAV TWEAKS ── */
+    @media (max-width: 680px) {
+      .nav-links {
+        display: none; /* Hides the links on phone to save space */
+      }
+      .nav-inner {
+        justify-content: center; /* Centers the logo */
+      }
+            /* Hide custom cursor on touchscreens */
+      #custom-cursor-ring, #custom-cursor-dot {
+        display: none !important;
+      }
+      * {
+        cursor: auto !important;
+      }
+    }
     /* ── SCROLL REVEAL ── */
     .reveal {
       opacity: 0; transform: translateY(32px);
