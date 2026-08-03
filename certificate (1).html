@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificate Details</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #060608;
+      --surface: #0f0f12;
+      --border: #1c1c22;
+      --text: #f0f0f0;
+      --text-muted: #888;
+      --accent: #7c6ef2;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --radius: 12px;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: var(--text); }
+    
+    .cert-header {
+      margin-bottom: 30px;
+    }
+    .cert-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .cert-sub {
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+    
+    .cert-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .cert-images img {
+      max-width: 100%;
+      max-height: 250px;       /* Keeps them readable but not huge */
+      width: auto;
+      height: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      object-fit: contain;
+      background: var(--surface);
+      margin: 0 auto;          /* Centers the image */
+      display: block;
+    }
+    .cert-context {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    .cert-context strong { color: var(--text); }
+    
+    @media (max-width: 600px) {
+      .cert-title { font-size: 1.6rem; }
+      .cert-images { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+   <!-- BACK BUTTON FIXED -->
+   <a href="index.html" id="back-btn" style="color: var(--text-muted); text-decoration: none; font-size: 1.2rem; transition: color 0.2s; display: inline-block; margin-bottom: 30px;">← Back</a>
+    
+    <div id="cert-content">
+      <!-- Content will be loaded by JavaScript -->
+    </div>
+  </div>
+
+  <script>
+    // --- 1. SAVE THE ID INSTANTLY ---
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id) {
+      sessionStorage.setItem('return_to_cert', id);
+    }
+
+    // --- 2. FORCE THE BACK BUTTON TO RE-SAVE THE ID ON CLICK ---
+    document.getElementById('back-btn').addEventListener('click', function(e) {
+      if (id) {
+        sessionStorage.setItem('return_to_cert', id);
+      }
+      // Let the link navigate naturally
+    });
+
+    // --- 3. LOAD THE CERTIFICATE DATA ---
+    const certData = [
+
+     {
+  id: 1,
+  title: "Budgetravel — My First-Ever Platform",
+  issuer: "My company",
+  images: [
+    "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/project.png"
+  ],
+  context: "<strong>About this:</strong><br><br>I am building <strong>Budgetravel</strong>, a travel-tech startup designed to make tourism in Uzbekistan more community-driven. MY goal is to create a platform that goes beyond standard travel booking and gives visitors a real connection to local life.<br><br>Unlike traditional platforms such as Airbnb (they are more of like finding a shelter in another country), My Budgetravel is pointed on direct connections between travelers and local families through cultural homestays. Guests experience real Uzbek hospitality. Households Earn money. The platform also helps local artisans sell handmade products directly to customers and makes it easier for travelers to find affordable restaurants where local families actually eat.<br><br>All transactions are handled inside the platform through a commission-based model, with Budgetravel taking a 10–15% service fee. I am independently managing the technical development of the platform while actively building it during the seed stage and preparing for customer reach and market validation.<br><br><a href='https://budgetravel.uz/' target='_blank' style='color: var(--accent);'>Click here to see it</a>"
+},
+      {
+  id: 2,
+  title: "Technovation Girls Program",
+  issuer: "Technovation Girls",
+  images: [
+    "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/technovationgirls.jpg"
+  ],
+  context: "<strong>About this:</strong><br><br>I took part in <a href='https://technovationchallenge.org/' target='_blank' style='color: var(--accent);'>Technovation Girls</a> as both the team leader and the person handling the technical side of the project. <br><br>My role was to keep the team moving (pushed them from january till may, bothering them in their dm) in the right direction while also making sure the product actually worked ( that was my first time building something, and I was taking that responsibilty). They say First time building something would be GARBAGE, but I liked that garbage (lol). Importantly, at the End, <em>SyneX (Bukhara) </em>, received a special nomination award supported by <a href='https://uz.usembassy.gov/' target='_blank' style='color: var(--accent);'>the Embassy of the United States in Uzbekistan</a>. "
+},
+     {
+  id: 3,
+  title: "Startup Fest Pitch",
+  issuer: "Start-up Fest",
+  images: [
+    "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/pitch.jpg"
+  ],
+  context: "<strong>About this:</strong><br><br>I pitched my project at <a href='https://www.startupfest.uz/' target='_blank' style='color: var(--accent);'>Start-up Fest by Youth Affairs</a> in front of <a href='https://www.linkedin.com/in/azizbek-kurbonov' target='_blank' style='color: var(--accent);'>Azizbek Kurbanov</a>. It was one of my first real chances to present an idea in a startup setting ( in front of someone BIG), and honestly, it pushed me out of my comfort zone.<br><br> I had 3 mins to explain my whole idea (there were like 100 people waiting under the sun) and my energy mode was on. While pitching,  I was speaking both uzbek and english and showing my presentation on my computer and had to answer questions from audience [ defination for audience: a bunch of people who likes cricizing your idea even if they don't understand sometimes]. But, but, I survived thanks to my negotiations skills passed from my father. Here, you see in the picture, I got  <strong>Best Pitch Nomination</strong>. given ceremonial by A.Kurbanov and M.Murodova!"
+},
+     {
+  id: 4,
+  title: "Innovation & Entrepreneurship",
+  issuer: "BPS Hackathon",
+  images: [
+    "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/bps.jpg"
+  ],
+  context: "<strong>About this:</strong><br><br>This was my first time taking part in a hackathon, and it was definitely a challenge (that was my very first try in something intensive like that). WE built <strong>MediCard</strong>, a digital healthcare platform created to replace paper medical records and make diagnostics, prescriptions, and doctor appointments easier to manage.<br><br>Even with little time, we could move fast — from brainstorming and shaping the idea to building the actual solution. It was fr intense, but we kept going and managed to turn our idea into something real. AT THE VERY END, our work was recognized with an achievement award, and we also received a free voucher to join entrepreneurship programs organized by <a href='https://startupgarage.uz/en/portfolio#tab8' target='_blank' style='color: var(--accent);'>Startup Garage</a>. It was well-deserving!! You can see my reaction when they declared our team name ( below).<br><br><a href='https://t.me/Elevate_hackathon' target='_blank' style='color: var(--accent);'>Click here to view the experience.</a>"
+},
+      
+{
+  id: 5,
+  title: "Sports Leadership & Teamwork",
+  issuer: "Volleyball Club",
+  images: [
+    "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sport.jpg"
+  ],
+  context: "<strong>About this:</strong><br><br>For more than four years, I was involved in athletics and volleyball, taking part in regional competitions and pushing myself in competitive environments ( really really competitive). My journey in sport was not baaad, I earned 2nd place in one of the regional athletic competition, and won 1st, 2nd places in different girls volleybal tournaments (my team was my students actually).<br><br>Outside of competitions, I also led my school volleyball club for several years. I used to organize training sessions as an assistant of my PE teacher. This experience made me realize how important it is to help a team grow together and how to lead."
+},
+      
+      {
+  id: 6,
+  title: "Community Management",
+  issuer: "Start-up Ambassadors",
+  images: [
+    "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/sth.jpg"
+  ],
+  context: "<strong>About this:</strong><br><br>I work as a Startup Ambassador for Gijduvan under Startup Ambassadors Uzbekistan, and I am  helping to shape a stronger startup culture in the whole region. Together with the <a href='https://t.me/sabukhara' target='_blank' style='color: var(--accent);'>SA Bukhara Community</a>, we organize monthly workshops built around the lessons and experience we gained from the <a href='https://www.startupambassadors.uz/' target='_blank' style='color: var(--accent);'>Startup Ambassadors</a> Winter Camp.<br><br>For me, this work is not ONLY EVENT!! I am  creating a space for young people to start seeing entrepreneurship as something they can be part of. These days, I am building a website for the Bukhara ambassador community (for our region), so we can keep track of events,and handle registrations more smoothly."
+},
+     {
+  id: 7,
+  title: "Academic Excellence",
+  issuer: "Olympiads",
+  images: [
+    "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/english.jpg"
+  ],
+  context: "<strong>About this:</strong><br><br>Throughout my academic journey, I have won in several English competitions at both national and international levels, and I have earned 1st and 2nd place awards in different Olympiads. My experience includes events such as the HIPPO English Language Olympiad, national spelling bee contests, and other large academic competitions.<br><br>These competitions built a body to keep improving, and performing under pressure. They are the reason for how I seem more confident when competing with strong students from different backgrounds."
+},
+     {
+  id: 8,
+  title: "Founders Program",
+  issuer: "Venture companies",
+  images: [
+    "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/founders.jpg"
+  ],
+  context: "<strong>About this:</strong><br><br>I am selected as one of the young founders in the <a href='https://t.me/bukhara_founders' target='_blank' style='color: var(--accent);'>Bukhara Founders Community</a>, a startup-focused program built to connect early-stage entrepreneurs and help them grow. I was actually selected because of my confidence and my strong idea when I spoke directly with Abdulaziz aka from Yoshlar Ventures. During the program, I am attending sessions where experienced founders share their own journeys, including the founder of <a href='https://onless.uz' target='_blank' style='color: var(--accent);'>Onless.uz</a>, who spoke about building from zero and later securing about $45,000 in investment.<br><br>What I am getting from the program is a clearer view of how startups actually move forward, and how an idea becomes something people are willing to invest in. I hope,  it will help me to understand the space I want to be part of much better."
+},
+     {
+  id: 9,
+  title: "CubeSat 101 — Mission ShakthiSAT",
+  issuer: "Space Kidz India",
+  images: [
+    "https://raw.githubusercontent.com/mashxura04/rara-portfolio/main/shakthisat.jpg"
+  ],
+  context: "<strong>About this:</strong><br><br>I completed <strong>CubeSat 101: Inception to Operations</strong>, a satellite-building course run by <a href='https://www.spacekidzindia.in/' target='_blank' style='color: var(--accent);'>Space Kidz India</a> (the aerospace startup behind AzaadiSAT and other student-built satellites launched with ISRO), as part of <strong>Mission ShakthiSAT</strong> — an all-girls lunar satellite mission connecting 12,000 girls from 108 countries around the world.<br><br>The course walked through the full lifecycle of building a CubeSat, from mission design and systems engineering to payload integration and mission operations. Mission ShakthiSAT itself is aimed at high-resolution mapping of the lunar surface and identifying resources like water ice, while giving girls from around the world real, hands-on exposure to satellite technology and space science.<br><br>For finishing the course, I was conferred the title <strong>Young Scientist in the Space Domain</strong> by Dr. Srimathy Kesan, Founder & CEO of Space Kidz India and Mission Director of Mission ShakthiSAT."
+}
+    ];
+
+    const certId = parseInt(id);
+    const cert = certData.find(c => c.id === certId);
+    const content = document.getElementById('cert-content');
+
+    if (cert) {
+      let imagesHtml = cert.images.map(img => `<img src="${img}" alt="${cert.title}" />`).join('');
+      
+      content.innerHTML = `
+        <div class="cert-header">
+          <div class="cert-title">${cert.title}</div>
+          <div class="cert-sub">${cert.issuer}</div>
+        </div>
+        <div class="cert-images">${imagesHtml}</div>
+        <div class="cert-context">${cert.context}</div>
+      `;
+    } else {
+      // This else statement prevents the blank screen you saw!
+      content.innerHTML = `<p style="color:var(--text-muted);">Certificate not found (ID: ${id}). Please go back and try again.</p>`;
+    }
+  </script>
+</body>
+</html>
